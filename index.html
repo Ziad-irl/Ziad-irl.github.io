@@ -1,0 +1,2130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ziad Hanafi — ML Engineer & Computer Vision Developer</title>
+<meta name="description" content="Ziad Hanafi — ML engineer from Cairo building computer vision, OCR (Arabic + Latin) and production ML systems. Try live demos in your browser, see case studies, and start a project.">
+<meta property="og:title" content="Ziad Hanafi — ML Engineer & Computer Vision Developer">
+<meta property="og:description" content="Computer vision, OCR and ML-to-production. Try the live lab in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ziad-irl.github.io/cropped.png">
+<meta property="og:url" content="https://ziad-irl.github.io/">
+<link rel="canonical" href="https://ziad-irl.github.io/">
+<meta name="theme-color" content="#050810">
+<meta name="google-site-verification" content="nNW3lHzkXXWZs1WsfCrw6vg8r4Eek85WGZYKw1SxOpA">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ziad Hanafi",
+  "jobTitle": "Machine Learning Engineer",
+  "url": "https://ziad-irl.github.io/",
+  "image": "https://ziad-irl.github.io/cropped.png",
+  "email": "mailto:elkenawyziad@gmail.com",
+  "address": {"@type": "PostalAddress", "addressLocality": "Cairo", "addressCountry": "EG"},
+  "sameAs": ["https://linkedin.com/in/ziad-hanafi-17aa80197", "https://github.com/Ziad-irl"],
+  "knowsLanguage": ["ar", "en", "ja"]
+}
+</script>
+<style>
+:root {
+  --bg: #050810;
+  --bg-2: #0a0e1a;
+  --surface: #0d1220;
+  --surface-2: #131a2c;
+  --line: rgba(255,255,255,0.08);
+  --line-strong: rgba(255,255,255,0.16);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --dim: #64748b;
+  --primary: #50e3ff;
+  --secondary: #6366f1;
+  --accent: #a855f7;
+  --success: #a6f65d;
+  --warm: #ff8c42;
+  --danger: #ff5d73;
+  --grad: linear-gradient(120deg, var(--primary), var(--secondary) 50%, var(--accent));
+  --font-head: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-ar: 'Noto Naskh Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --radius: 20px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--primary); color: var(--bg); }
+a { color: inherit; }
+img, canvas { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+
+.container { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: clamp(5rem, 10vw, 8rem) 0; position: relative; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--primary); display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem;
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+.section-title { font-size: clamp(2.2rem, 5vw, 3.75rem); margin-bottom: 1rem; max-width: 20ch; }
+.section-lead { color: var(--muted); font-size: 1.1rem; max-width: 60ch; }
+.section-head { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.noise {
+  position: fixed; inset: 0; pointer-events: none; z-index: 200; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#progress { position: fixed; top: 0; left: 0; height: 2px; width: 100%; transform: scaleX(0); transform-origin: left; background: var(--grad); z-index: 150; }
+
+/* Buttons & chips */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+  padding: 0.85rem 1.4rem; border-radius: 999px; border: 1px solid var(--line-strong);
+  background: rgba(255,255,255,0.03); text-decoration: none; font-weight: 500; font-size: 0.95rem;
+  transition: transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s; white-space: nowrap;
+}
+.btn:hover { transform: translateY(-2px); border-color: var(--primary); background: rgba(80,227,255,0.06); }
+.btn-primary { background: var(--grad); border-color: transparent; color: #04060c; font-weight: 600; }
+.btn-primary:hover { background: var(--grad); box-shadow: 0 10px 40px -10px rgba(80,227,255,0.6); }
+.btn-sm { padding: 0.55rem 1rem; font-size: 0.85rem; }
+.btn svg { width: 16px; height: 16px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; border-radius: 999px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--line); color: var(--text); white-space: nowrap;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px;
+  display: flex; align-items: center; transition: background .3s, border-color .3s, backdrop-filter .3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled { background: rgba(5,8,16,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-color: var(--line); }
+.nav .container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; }
+.logo { font-family: var(--font-head); font-weight: 700; font-size: 1.35rem; text-decoration: none; letter-spacing: -0.04em; }
+.logo span { color: var(--primary); }
+.nav-links { display: flex; gap: 0.25rem; list-style: none; }
+.nav-links a {
+  text-decoration: none; font-size: 0.9rem; color: var(--muted); padding: 0.5rem 0.85rem; border-radius: 999px; transition: color .2s, background .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text); background: rgba(255,255,255,0.06); }
+.nav-actions { display: flex; gap: 0.5rem; align-items: center; }
+.burger { display: none; background: none; border: 1px solid var(--line-strong); border-radius: 999px; width: 44px; height: 44px; align-items: center; justify-content: center; }
+.burger span, .burger span::before, .burger span::after { display: block; width: 18px; height: 1.5px; background: var(--text); position: relative; transition: transform .3s; }
+.burger span::before, .burger span::after { content: ''; position: absolute; left: 0; }
+.burger span::before { top: -6px; } .burger span::after { top: 6px; }
+.nav.open .burger span { background: transparent; }
+.nav.open .burger span::before { transform: translateY(6px) rotate(45deg); }
+.nav.open .burger span::after { transform: translateY(-6px) rotate(-45deg); }
+
+/* HERO */
+.hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 110px 0 70px; overflow: hidden; }
+#hero-gl { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(60% 50% at 75% 45%, rgba(99,102,241,0.18), transparent 70%), radial-gradient(40% 40% at 10% 90%, rgba(80,227,255,0.10), transparent 70%);
+}
+.hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 160px; background: linear-gradient(transparent, var(--bg)); z-index: 1; pointer-events: none; }
+.hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; width: 100%; }
+.status {
+  display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem;
+  color: var(--success); background: rgba(166,246,93,0.08); border: 1px solid rgba(166,246,93,0.22);
+  padding: 0.45rem 0.95rem; border-radius: 999px; margin-bottom: 1.75rem;
+}
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; flex: none; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(166,246,93,0.7); } 70% { box-shadow: 0 0 0 10px rgba(166,246,93,0); } 100% { box-shadow: 0 0 0 0 rgba(166,246,93,0); } }
+.hero h1 { font-size: clamp(3.2rem, 9vw, 7.2rem); line-height: 0.92; letter-spacing: -0.045em; margin-bottom: 1.25rem; }
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .line > span { display: inline-block; transform: translateY(105%); animation: rise 1.1s var(--ease) forwards; }
+.hero h1 .line:nth-child(2) > span { animation-delay: .12s; }
+@keyframes rise { to { transform: none; } }
+.rotator { font-family: var(--font-head); font-size: clamp(1.3rem, 2.6vw, 2rem); font-weight: 500; margin-bottom: 1.25rem; min-height: 1.4em; }
+.rotator .typed { color: var(--primary); }
+.caret { display: inline-block; width: 2px; height: 1em; background: var(--primary); margin-left: 3px; vertical-align: -0.12em; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero-bio { color: var(--muted); font-size: 1.08rem; max-width: 54ch; margin-bottom: 2rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.75rem; }
+.hero-stats { display: grid; grid-template-columns: repeat(4, auto); gap: clamp(1rem, 3vw, 2.5rem); justify-content: start; }
+.stat-num { font-family: var(--font-head); font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 700; line-height: 1; }
+.stat-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.4rem; max-width: 14ch; line-height: 1.4; }
+
+.portrait { position: relative; max-width: 420px; justify-self: center; width: 100%; }
+.portrait-frame {
+  position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 4 / 5;
+  border: 1px solid var(--line-strong); background: #000;
+  box-shadow: 0 40px 120px -30px rgba(99,102,241,0.55), 0 0 0 1px rgba(80,227,255,0.1) inset;
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+.portrait-frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 60%, rgba(5,8,16,0.65)); }
+.float-chip {
+  position: absolute; z-index: 3; display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(13,18,32,0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-strong); border-radius: 14px; padding: 0.6rem 0.85rem; font-size: 0.8rem;
+  animation: bob 6s ease-in-out infinite; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.8);
+}
+.float-chip b { font-family: var(--font-head); font-size: 1rem; display: block; line-height: 1.1; }
+.float-chip small { color: var(--muted); font-size: 0.72rem; }
+.float-chip .ic { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; background: rgba(80,227,255,0.12); color: var(--primary); flex: none; }
+.float-chip .ic svg { width: 18px; height: 18px; }
+.fc-1 { top: 8%; left: -12%; }
+.fc-2 { top: 46%; right: -10%; animation-delay: -2s; }
+.fc-3 { bottom: 7%; left: -6%; animation-delay: -4s; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 3; font-family: var(--font-mono); font-size: 0.7rem; color: var(--dim); letter-spacing: 0.2em; display: flex; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; }
+.scroll-hint i { width: 1px; height: 36px; background: linear-gradient(var(--primary), transparent); animation: drip 2s infinite; }
+@keyframes drip { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* TRUST MARQUEE */
+.trust { padding: 2.25rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-2); overflow: hidden; }
+.trust-label { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); margin-bottom: 1.25rem; }
+.marquee { display: flex; width: max-content; animation: marquee 38s linear infinite; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.trust:hover .marquee { animation-play-state: paused; }
+.marquee span { font-family: var(--font-head); font-weight: 600; font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--muted); padding: 0 2.25rem; display: inline-flex; align-items: center; gap: 2.25rem; white-space: nowrap; }
+.marquee span::after { content: '✦'; color: var(--primary); font-size: 0.8rem; opacity: 0.6; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
+  border: 1px solid var(--line); border-radius: var(--radius); position: relative; overflow: hidden;
+  transition: border-color .3s, transform .4s var(--ease);
+}
+.card::before {
+  content: ''; position: absolute; width: 500px; height: 500px; left: var(--mx, -999px); top: var(--my, -999px);
+  transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(80,227,255,0.09), transparent 60%);
+  pointer-events: none; opacity: 0; transition: opacity .3s;
+}
+.card:hover::before { opacity: 1; }
+.card:hover { border-color: var(--line-strong); }
+.service { padding: clamp(1.5rem, 3vw, 2.25rem); display: flex; flex-direction: column; gap: 1rem; }
+.service-icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; background: rgba(80,227,255,0.08); border: 1px solid rgba(80,227,255,0.2); color: var(--primary); }
+.service-icon svg { width: 26px; height: 26px; }
+.service h3 { font-size: 1.5rem; }
+.service p { color: var(--muted); }
+.service ul { list-style: none; display: grid; gap: 0.45rem; font-size: 0.93rem; }
+.service li { display: flex; gap: 0.6rem; align-items: baseline; }
+.service li::before { content: '→'; color: var(--primary); font-family: var(--font-mono); flex: none; }
+.service-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--line); }
+.link-arrow { color: var(--primary); text-decoration: none; font-weight: 500; font-size: 0.92rem; display: inline-flex; gap: 0.4rem; align-items: center; background: none; border: 0; padding: 0; }
+.link-arrow:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.process { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; counter-reset: step; }
+.step { padding: 1.5rem; border-top: 1px solid var(--line-strong); position: relative; }
+.step::before { counter-increment: step; content: '0' counter(step); font-family: var(--font-mono); color: var(--primary); font-size: 0.8rem; display: block; margin-bottom: 0.75rem; }
+.step::after { content: ''; position: absolute; top: -1px; left: 0; width: 40px; height: 1px; background: var(--primary); }
+.step h4 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+.step p { color: var(--muted); font-size: 0.92rem; }
+
+/* LAB */
+#lab { background: linear-gradient(180deg, transparent, var(--bg-2) 20%, var(--bg-2) 80%, transparent); }
+.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tab {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 14px; padding: 0.8rem 1.1rem;
+  text-align: left; display: flex; gap: 0.75rem; align-items: center; transition: border-color .2s, background .2s; flex: 1 1 220px;
+}
+.tab .ti { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,0.05); color: var(--muted); flex: none; transition: color .2s, background .2s; }
+.tab .ti svg { width: 18px; height: 18px; }
+.tab b { display: block; font-family: var(--font-head); font-size: 1rem; }
+.tab small { color: var(--muted); font-size: 0.78rem; }
+.tab:hover { border-color: var(--line-strong); }
+.tab[aria-selected="true"] { border-color: var(--primary); background: rgba(80,227,255,0.06); }
+.tab[aria-selected="true"] .ti { color: var(--bg); background: var(--primary); }
+.panel { display: none; }
+.panel.active { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.25rem; animation: fadeIn .5s var(--ease); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.stage { padding: 1rem; display: flex; flex-direction: column; gap: 0.85rem; min-width: 0; }
+.stage-top { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.win-dots { display: flex; gap: 6px; } .win-dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
+.win-dots i:nth-child(1) { background: #ff5f57; } .win-dots i:nth-child(2) { background: #febc2e; } .win-dots i:nth-child(3) { background: #28c840; }
+.mono { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.canvas-wrap { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+.canvas-wrap canvas { width: 100%; height: auto; touch-action: none; }
+.canvas-wrap .overlay { position: absolute; inset: 0; pointer-events: none; }
+.canvas-hint { position: absolute; left: 10px; bottom: 10px; font-family: var(--font-mono); font-size: 0.7rem; color: #fff; background: rgba(0,0,0,0.6); padding: 0.25rem 0.55rem; border-radius: 6px; pointer-events: none; }
+.controls { padding: 1.25rem; display: flex; flex-direction: column; gap: 1.1rem; min-width: 0; }
+.controls h3 { font-size: 1.3rem; }
+.controls .desc { color: var(--muted); font-size: 0.9rem; }
+.field { display: flex; flex-direction: column; gap: 0.45rem; }
+.field > label, .field > .lbl { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; display: flex; justify-content: space-between; }
+.field output { color: var(--primary); }
+input[type="text"], select, textarea {
+  width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--line-strong); border-radius: 10px; padding: 0.65rem 0.8rem; font-size: 0.92rem;
+}
+select option { background: var(--surface); }
+textarea { resize: vertical; min-height: 110px; }
+input[type="range"] { width: 100%; accent-color: var(--primary); }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 12px; padding: 4px; }
+.seg button { flex: 1 1 auto; background: none; border: 0; border-radius: 8px; padding: 0.45rem 0.6rem; font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); }
+.seg button[aria-pressed="true"] { background: rgba(80,227,255,0.14); color: var(--primary); }
+.row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.row .btn { flex: 1 1 auto; }
+.readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.readout div { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.7rem; }
+.readout b { display: block; font-family: var(--font-head); font-size: 1.2rem; }
+.readout span { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; }
+.verdict { font-family: var(--font-mono); font-size: 0.8rem; padding: 0.35rem 0.75rem; border-radius: 999px; display: inline-flex; gap: 0.4rem; align-items: center; }
+.verdict.pass { color: var(--success); background: rgba(166,246,93,0.1); border: 1px solid rgba(166,246,93,0.3); }
+.verdict.fail { color: var(--warm); background: rgba(255,140,66,0.1); border: 1px solid rgba(255,140,66,0.35); }
+.ocr-out {
+  background: #04060c; border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem; min-height: 88px;
+  font-family: var(--font-mono); font-size: 0.88rem; white-space: pre-wrap; word-break: break-word; color: var(--text);
+}
+.ocr-out[dir="rtl"] { font-family: var(--font-ar); font-size: 1.05rem; }
+.bar { height: 6px; border-radius: 99px; background: rgba(255,255,255,0.06); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0%; background: var(--grad); transition: width .2s; }
+.note { font-size: 0.8rem; color: var(--dim); border-left: 2px solid var(--line-strong); padding-left: 0.75rem; }
+.note a { color: var(--muted); }
+.aug-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+.aug-tile { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: #000; }
+.aug-tile canvas { width: 100%; height: auto; aspect-ratio: 1; }
+.aug-tile span { position: absolute; left: 0; right: 0; bottom: 0; font-family: var(--font-mono); font-size: 0.6rem; padding: 0.3rem 0.4rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #e2e8f0; line-height: 1.3; }
+.aug-src { display: grid; grid-template-columns: 120px 1fr; gap: 1rem; align-items: center; }
+.aug-src canvas { border-radius: 10px; border: 1px solid var(--line); width: 120px; height: 120px; }
+.checks { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.checks label { display: inline-flex; gap: 0.4rem; align-items: center; font-size: 0.8rem; font-family: var(--font-mono); padding: 0.35rem 0.6rem; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; user-select: none; }
+.checks input { accent-color: var(--primary); }
+
+/* Class balance chart */
+.balance { display: grid; gap: 0.35rem; position: relative; }
+.balance-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.legend { display: flex; gap: 0.9rem; font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 0.35rem; vertical-align: -1px; }
+.sw-orig { background: var(--secondary); }
+.sw-aug { background: repeating-linear-gradient(45deg, var(--secondary) 0 2px, transparent 2px 5px); border: 1px solid var(--secondary); }
+.brow { display: grid; grid-template-columns: 108px 1fr 52px; gap: 0.5rem; align-items: center; font-size: 0.74rem; padding: 2px 0; border-radius: 6px; }
+.brow:hover { background: rgba(255,255,255,0.03); }
+.brow .name { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.brow .val { font-family: var(--font-mono); color: var(--text); text-align: right; }
+.track { height: 12px; display: flex; gap: 2px; }
+.track .o, .track .a { height: 100%; transition: width .8s var(--ease); }
+.track .o { background: var(--secondary); border-radius: 0 4px 4px 0; }
+.track .a { background: repeating-linear-gradient(45deg, var(--secondary) 0 2px, transparent 2px 5px); border: 1px solid var(--secondary); border-radius: 0 4px 4px 0; }
+.track.has-aug .o { border-radius: 0; }
+.tip {
+  position: fixed; z-index: 300; pointer-events: none; background: var(--surface-2); border: 1px solid var(--line-strong);
+  border-radius: 8px; padding: 0.45rem 0.65rem; font-size: 0.75rem; opacity: 0; transition: opacity .15s; max-width: 240px;
+}
+.tip.show { opacity: 1; }
+
+/* WORK */
+.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+.project { padding: 1rem; display: flex; flex-direction: column; }
+.project:hover { transform: translateY(-4px); }
+.project-visual { height: 230px; border-radius: 14px; overflow: hidden; background: #0a0e1a; border: 1px solid var(--line); margin-bottom: 1.4rem; }
+.project-visual svg { width: 100%; height: 100%; }
+.project-body { padding: 0 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.85rem; flex: 1; }
+.project-meta { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.project-meta .mono { color: var(--primary); }
+.result-badge { font-family: var(--font-head); font-weight: 700; color: var(--success); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.project h3 { font-size: 1.75rem; }
+.project p { color: var(--muted); }
+.project-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: auto; padding-top: 0.5rem; }
+
+dialog.case {
+  border: 1px solid var(--line-strong); border-radius: 24px; background: var(--surface); color: var(--text);
+  width: min(820px, calc(100vw - 32px)); max-height: calc(100vh - 48px); padding: 0; margin: auto;
+}
+dialog.case::backdrop { background: rgba(2,4,10,0.75); backdrop-filter: blur(6px); }
+.case-inner { padding: clamp(1.5rem, 4vw, 2.75rem); display: grid; gap: 1.5rem; }
+.case-close { position: sticky; top: 0; float: right; margin: 1rem 1rem 0 0; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); background: var(--surface-2); font-size: 1.2rem; }
+.case h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.case h4 { font-family: var(--font-mono); font-size: 0.75rem; color: var(--primary); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+.case p, .case li { color: var(--muted); }
+.case ol { padding-left: 1.25rem; display: grid; gap: 0.5rem; }
+.pipeline { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.pipeline span { font-family: var(--font-mono); font-size: 0.75rem; padding: 0.45rem 0.7rem; border-radius: 8px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.35); }
+.pipeline em { color: var(--dim); font-style: normal; }
+.case-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+.case-results div { padding: 1rem; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); }
+.case-results b { display: block; font-family: var(--font-head); font-size: 1.4rem; color: var(--success); }
+.case-results span { font-size: 0.85rem; color: var(--muted); }
+
+/* SKILLS */
+.skills-layout { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.25rem; align-items: start; }
+.skill-groups { display: grid; gap: 1rem; }
+.skill-group { padding: 1.25rem 1.4rem; }
+.skill-group h3 { font-size: 1rem; font-family: var(--font-mono); font-weight: 500; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.6rem; }
+.skill-group h3 i { width: 8px; height: 8px; border-radius: 2px; background: var(--c, var(--primary)); }
+.skill-btn {
+  background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 10px; padding: 0.5rem 0.8rem; font-size: 0.88rem;
+  display: inline-flex; align-items: center; gap: 0.5rem; transition: border-color .2s, background .2s, transform .2s;
+}
+.skill-btn:hover { border-color: var(--line-strong); transform: translateY(-1px); }
+.skill-btn[aria-pressed="true"] { border-color: var(--primary); background: rgba(80,227,255,0.08); }
+.lvl { display: inline-flex; gap: 2px; }
+.lvl i { width: 4px; height: 10px; border-radius: 2px; background: rgba(255,255,255,0.12); }
+.lvl i.on { background: var(--primary); }
+.skill-panel { padding: 1.75rem; position: sticky; top: 96px; display: grid; gap: 1rem; min-height: 320px; align-content: start; }
+.skill-panel h3 { font-size: 2rem; }
+.tier { font-family: var(--font-mono); font-size: 0.75rem; color: var(--primary); }
+.used-list { list-style: none; display: grid; gap: 0.5rem; }
+.used-list li { display: flex; gap: 0.75rem; align-items: center; padding: 0.7rem 0.85rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.02); font-size: 0.92rem; }
+.used-list li small { color: var(--muted); font-family: var(--font-mono); font-size: 0.7rem; margin-left: auto; text-align: right; }
+.tier-key { display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--muted); font-family: var(--font-mono); margin-top: 1rem; }
+
+.langs { margin-top: 3.5rem; display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.25rem; }
+.lang-card { padding: 1.5rem; }
+.lang-card > h3 { font-size: 1.25rem; margin-bottom: 0.3rem; }
+.lang-card > p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.25rem; }
+.code-langs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+.code-lang { display: flex; align-items: center; gap: 0.75rem; padding: 0.7rem 0.85rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.02); }
+.code-lang .badge { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-family: var(--font-mono); font-weight: 500; font-size: 0.75rem; flex: none; color: #04060c; }
+.code-lang .info { flex: 1; min-width: 0; }
+.code-lang .info b { display: block; font-size: 0.95rem; }
+.code-lang .info small { color: var(--muted); font-size: 0.72rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pips { display: flex; gap: 3px; flex: none; }
+.pips i { width: 14px; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.1); }
+.pips i.on { background: var(--primary); }
+.spoken { display: grid; gap: 0.9rem; }
+.spoken-row { display: grid; gap: 0.45rem; }
+.spoken-row .top { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.spoken-row .top b { font-size: 1.05rem; }
+.spoken-row .top b span { font-family: var(--font-ar); color: var(--muted); font-weight: 500; margin-left: 0.4rem; font-size: 0.95rem; }
+.spoken-row .top small { font-family: var(--font-mono); font-size: 0.75rem; color: var(--primary); }
+.cefr { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+.cefr i { height: 22px; border-radius: 5px; background: rgba(255,255,255,0.05); font-style: normal; font-family: var(--font-mono); font-size: 0.62rem; color: var(--dim); display: grid; place-items: center; }
+.cefr i.on { background: rgba(80,227,255,0.18); color: var(--primary); border: 1px solid rgba(80,227,255,0.35); }
+
+/* EXPERIENCE */
+.timeline { position: relative; display: grid; gap: 1.25rem; padding-left: 2.5rem; }
+.timeline::before { content: ''; position: absolute; left: 11px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--primary), var(--accent), transparent); }
+.tl-item { position: relative; padding: 1.5rem 1.75rem; display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; }
+.tl-item::after { content: ''; position: absolute; left: calc(-2.5rem + 5px); top: 1.9rem; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--primary); box-shadow: 0 0 0 4px rgba(80,227,255,0.12); }
+.tl-item.now::after { background: var(--primary); }
+.tl-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--primary); }
+.tl-date small { display: block; color: var(--dim); margin-top: 0.3rem; }
+.tl-item h3 { font-size: 1.35rem; margin-bottom: 0.15rem; }
+.tl-org { color: var(--text); opacity: 0.8; margin-bottom: 0.65rem; }
+.tl-item p { color: var(--muted); margin-bottom: 0.9rem; }
+
+/* AWARDS */
+.awards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.award { padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.award .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(255,140,66,0.1); border: 1px solid rgba(255,140,66,0.3); color: var(--warm); }
+.award .ic svg { width: 22px; height: 22px; }
+.award h3 { font-size: 1.15rem; }
+.award p { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.award .rank { font-family: var(--font-head); font-weight: 700; color: var(--warm); font-size: 1.4rem; margin-top: auto; }
+
+/* CONTACT */
+#contact { overflow: hidden; }
+.contact-orb { position: absolute; left: 50%; top: 40%; width: 900px; height: 900px; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(168,85,247,0.22), transparent 60%); filter: blur(40px); pointer-events: none; }
+.contact-grid { position: relative; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.25rem; align-items: stretch; }
+.contact-title { font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 0.95; letter-spacing: -0.04em; margin-bottom: 1.25rem; }
+.brief { padding: clamp(1.25rem, 3vw, 2rem); display: grid; gap: 1.1rem; }
+.pick { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pick button { background: rgba(255,255,255,0.03); border: 1px solid var(--line-strong); border-radius: 999px; padding: 0.5rem 0.9rem; font-size: 0.85rem; transition: all .2s; }
+.pick button[aria-pressed="true"] { background: var(--primary); color: #04060c; border-color: var(--primary); font-weight: 500; }
+.channels { padding: clamp(1.25rem, 3vw, 2rem); display: flex; flex-direction: column; gap: 0.75rem; }
+.channel { display: flex; align-items: center; gap: 0.9rem; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; background: rgba(255,255,255,0.02); transition: border-color .2s, transform .2s; }
+.channel:hover { border-color: var(--primary); transform: translateX(4px); }
+.channel .ic { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,255,255,0.05); flex: none; }
+.channel .ic svg { width: 20px; height: 20px; }
+.channel b { display: block; font-size: 0.95rem; }
+.channel small { color: var(--muted); font-size: 0.8rem; word-break: break-all; }
+.channel .go { margin-left: auto; color: var(--dim); font-family: var(--font-mono); }
+.avail { margin-top: auto; padding: 1rem; border-radius: 14px; background: rgba(166,246,93,0.06); border: 1px solid rgba(166,246,93,0.2); font-size: 0.88rem; color: var(--muted); display: flex; gap: 0.7rem; align-items: flex-start; }
+.avail .dot { margin-top: 7px; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); background: var(--surface-2); border: 1px solid var(--primary); padding: 0.7rem 1.1rem; border-radius: 999px; font-size: 0.88rem; opacity: 0; transition: all .3s var(--ease); z-index: 300; pointer-events: none; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+footer { border-top: 1px solid var(--line); padding: 2rem 0; font-family: var(--font-mono); font-size: 0.8rem; color: var(--dim); }
+footer .container { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+footer a { color: var(--muted); text-decoration: none; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 1080px) {
+  .nav-links { display: none; }
+  .burger { display: inline-flex; }
+  .nav.open { background: rgba(5,8,16,0.96); backdrop-filter: blur(16px); }
+  .nav.open .nav-links {
+    display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; padding: 1rem var(--gutter) 1.5rem;
+    background: rgba(5,8,16,0.96); border-bottom: 1px solid var(--line);
+  }
+  .nav.open .nav-links a { font-size: 1.1rem; padding: 0.8rem 0.5rem; }
+  .panel.active { grid-template-columns: 1fr; }
+  .awards { grid-template-columns: repeat(2, 1fr); }
+  .process { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .portrait { max-width: 340px; order: -1; }
+  .fc-1 { left: -4%; } .fc-2 { right: -4%; } .fc-3 { left: 0; }
+  .services-grid, .work-grid, .skills-layout, .langs, .contact-grid { grid-template-columns: 1fr; }
+  .skill-panel { position: static; min-height: 0; }
+  .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+}
+@media (max-width: 600px) {
+  .nav-actions .btn-ghost-cv { display: none; }
+  .hero-stats { grid-template-columns: repeat(2, auto); row-gap: 1.25rem; }
+  .hero-ctas .btn { flex: 1 1 100%; }
+  .float-chip { font-size: 0.72rem; padding: 0.45rem 0.6rem; }
+  .float-chip .ic { width: 26px; height: 26px; }
+  .fc-2 { display: none; }
+  .code-langs { grid-template-columns: 1fr; }
+  .awards, .process { grid-template-columns: 1fr; }
+  .aug-grid { grid-template-columns: repeat(2, 1fr); }
+  .readout { grid-template-columns: repeat(3, 1fr); }
+  .timeline { padding-left: 1.75rem; }
+  .timeline::before { left: 5px; }
+  .tl-item::after { left: calc(-1.75rem - 1px); }
+  .tl-item { padding: 1.25rem; }
+  .brow { grid-template-columns: 84px 1fr 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<div class="noise" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
+<div class="tip" id="tip" role="tooltip"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="container">
+    <a href="#top" class="logo">ZH<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#lab">Live Lab</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-sm btn-ghost-cv" href="ziad_hanafi_CV.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>CV
+      </a>
+      <a class="btn btn-sm btn-primary" href="#contact">Hire me</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<header class="hero" id="top">
+  <canvas id="hero-gl" aria-hidden="true"></canvas>
+  <div class="container hero-grid">
+    <div>
+      <div class="status"><span class="dot"></span>Available for freelance projects &amp; ML roles</div>
+      <h1><span class="line"><span>Ziad</span></span><span class="line"><span class="grad-text">Hanafi</span></span></h1>
+      <p class="rotator" aria-live="off">I build <span class="typed" id="typed">computer vision systems</span><span class="caret"></span></p>
+      <p class="hero-bio">ML engineer in Cairo. I take models out of the notebook and into products people use: OCR that reads Arabic and Latin scripts, visual inspection for factories, and the APIs, apps and dashboards around them.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#lab">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Try my live demos
+        </a>
+        <a class="btn" href="#contact">Start a project</a>
+        <a class="btn" href="ziad_hanafi_CV.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>Download CV
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num"><span data-count="95">95</span>%</div><div class="stat-label">OCR accuracy, InkVision</div></div>
+        <div><div class="stat-num"><span data-count="4">4</span>+</div><div class="stat-label">Years building ML</div></div>
+        <div><div class="stat-num"><span data-count="20">20</span>+</div><div class="stat-label">Engineers mentored</div></div>
+        <div><div class="stat-num">NASA</div><div class="stat-label">Space Apps winner</div></div>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="portrait-frame">
+        <img src="cropped.png" alt="Portrait of Ziad Hanafi" width="896" height="1196" fetchpriority="high">
+      </div>
+      <div class="float-chip fc-1">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3"/><path d="M8 12h8"/></svg></div>
+        <div><b>Arabic + Latin</b><small>OCR in production</small></div>
+      </div>
+      <div class="float-chip fc-2">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M12 11l8-4.5M12 11v9M12 11L4 6.5"/></svg></div>
+        <div><b>AWS ML track</b><small>SageMaker · MLOps</small></div>
+      </div>
+      <div class="float-chip fc-3">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>
+        <div><b>4 live demos</b><small>Run them in your browser</small></div>
+      </div>
+    </div>
+  </div>
+  <a href="#services" class="scroll-hint" aria-label="Scroll to services">SCROLL<i></i></a>
+</header>
+
+<!-- TRUST -->
+<div class="trust" aria-label="Organisations I have worked with or been recognised by">
+  <p class="trust-label">Worked with &amp; recognised by</p>
+  <div class="marquee" aria-hidden="true">
+    <span>AWS × DEPI</span><span>Alignerr · Labelbox</span><span>Ministry of Communications &amp; IT</span><span>NASA Space Apps</span><span>Intel ISEF</span><span>IEEE</span><span>Empire Robotics Hub</span>
+    <span>AWS × DEPI</span><span>Alignerr · Labelbox</span><span>Ministry of Communications &amp; IT</span><span>NASA Space Apps</span><span>Intel ISEF</span><span>IEEE</span><span>Empire Robotics Hub</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Services</p>
+      <h2 class="section-title">What I can build <span class="grad-text">for you</span></h2>
+      <p class="section-lead">From a quick proof of concept to a system running in production. You get working software and clear documentation, with honest numbers on how well it performs.</p>
+    </div>
+    <div class="services-grid">
+      <article class="card service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Computer Vision &amp; OCR</h3>
+        <p>Read documents, spot defects, and classify or detect what matters in your images.</p>
+        <ul>
+          <li>OCR for Arabic &amp; Latin documents, receipts, IDs and forms</li>
+          <li>Visual quality inspection and defect detection</li>
+          <li>Image classification &amp; detection with custom datasets</li>
+        </ul>
+        <div class="service-foot"><div class="chips"><span class="chip">PyTorch</span><span class="chip">OpenCV</span><span class="chip">TensorFlow</span></div><button class="link-arrow" data-service="Computer vision / OCR">Discuss this →</button></div>
+      </article>
+      <article class="card service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+        <h3>ML Model → Production</h3>
+        <p>Your model works in a notebook. I turn it into a reliable service you can monitor.</p>
+        <ul>
+          <li>REST APIs, Docker images and AWS / SageMaker deployment</li>
+          <li>Training pipelines, model versioning &amp; monitoring</li>
+          <li>Optimizing models to run on edge devices</li>
+        </ul>
+        <div class="service-foot"><div class="chips"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">MLOps</span></div><button class="link-arrow" data-service="ML to production">Discuss this →</button></div>
+      </article>
+      <article class="card service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+        <h3>Full-stack &amp; Mobile Apps</h3>
+        <p>Apps your users will enjoy, with a solid backend behind them and AI features where they help.</p>
+        <ul>
+          <li>Flutter apps for iOS &amp; Android</li>
+          <li>Node.js / TypeScript APIs with MongoDB or PostgreSQL</li>
+          <li>Authentication, analytics dashboards, real-time features</li>
+        </ul>
+        <div class="service-foot"><div class="chips"><span class="chip">Flutter</span><span class="chip">Node.js</span><span class="chip">MongoDB</span></div><button class="link-arrow" data-service="App (Flutter / Node)">Discuss this →</button></div>
+      </article>
+      <article class="card service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+        <h3>Data Dashboards &amp; AI Evaluation</h3>
+        <p>Make sense of your data and check how good your AI's answers really are.</p>
+        <ul>
+          <li>Power BI dashboards and the data pipelines that feed them</li>
+          <li>LLM output evaluation, test sets and RLHF-style data</li>
+          <li>Reviewing AI features for risk and ethics</li>
+        </ul>
+        <div class="service-foot"><div class="chips"><span class="chip">Power BI</span><span class="chip">Pandas</span><span class="chip">RLHF</span></div><button class="link-arrow" data-service="Dashboard / data">Discuss this →</button></div>
+      </article>
+    </div>
+
+    <div class="process">
+      <div class="step reveal"><h4>Discover</h4><p>A short call about your goal and data, and what success looks like in numbers.</p></div>
+      <div class="step reveal"><h4>Prototype</h4><p>A working demo within days, so you can see results before committing to more.</p></div>
+      <div class="step reveal"><h4>Ship</h4><p>A production build with an API or app, deployment and documentation, with tests where they matter.</p></div>
+      <div class="step reveal"><h4>Support</h4><p>Monitoring, retraining and handover, so it keeps working after I've finished.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE LAB -->
+<section id="lab">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Live Lab</p>
+      <h2 class="section-title">Don't take my word for it. <span class="grad-text">Try it.</span></h2>
+      <p class="section-lead">Four interactive demos based on my projects. They all run in your browser, and nothing you upload leaves your device.</p>
+    </div>
+
+    <div class="tabs reveal" role="tablist" aria-label="Demos">
+      <button class="tab" role="tab" id="t-ocr" aria-controls="p-ocr" aria-selected="true">
+        <span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 9h8M8 12h8M8 15h5"/></svg></span>
+        <span><b>OCR Reader</b><small>English &amp; Arabic text</small></span>
+      </button>
+      <button class="tab" role="tab" id="t-defect" aria-controls="p-defect" aria-selected="false" tabindex="-1">
+        <span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M14 8l-4 8"/><circle cx="16" cy="15" r="1.5"/></svg></span>
+        <span><b>Defect Detector</b><small>Classic CV pipeline</small></span>
+      </button>
+      <button class="tab" role="tab" id="t-aug" aria-controls="p-aug" aria-selected="false" tabindex="-1">
+        <span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 1 8-1.4 5.5-5 10-9 10z"/><path d="M2 21c0-3 1.9-5.4 5-6"/></svg></span>
+        <span><b>Augmentation Lab</b><small>Tomato disease data</small></span>
+      </button>
+      <button class="tab" role="tab" id="t-nn" aria-controls="p-nn" aria-selected="false" tabindex="-1">
+        <span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6.5l3 4.5M7 17.5l3-4.5M14 11l3-4M14 13l3 4"/></svg></span>
+        <span><b>Neural Net Playground</b><small>Watch a model learn</small></span>
+      </button>
+    </div>
+
+    <!-- OCR -->
+    <div class="panel active" role="tabpanel" id="p-ocr" aria-labelledby="t-ocr">
+      <div class="card stage">
+        <div class="stage-top"><div class="win-dots"><i></i><i></i><i></i></div><span class="mono">ocr_playground.js</span></div>
+        <div class="canvas-wrap">
+          <canvas id="ocr-canvas" width="720" height="240" aria-label="Image that will be read by OCR"></canvas>
+          <canvas id="ocr-overlay" class="overlay" width="720" height="240" aria-hidden="true"></canvas>
+        </div>
+        <div class="field"><label>Recognised text <output id="ocr-meta"></output></label>
+          <div class="ocr-out" id="ocr-out" dir="auto">Press “Read text” to run OCR on the image above.</div>
+        </div>
+        <div class="bar" aria-hidden="true"><i id="ocr-bar"></i></div>
+        <div class="mono" id="ocr-status">Idle. The language model downloads on the first run (about 2–4 MB).</div>
+      </div>
+      <div class="card controls">
+        <h3>OCR Reader</h3>
+        <p class="desc">Type any text or upload a photo of a document. The reader finds each word, draws a box around it and shows how confident it is.</p>
+        <div class="field"><span class="lbl">Script</span>
+          <div class="seg" id="ocr-lang">
+            <button aria-pressed="true" data-lang="eng">English</button>
+            <button aria-pressed="false" data-lang="ara">العربية</button>
+          </div>
+        </div>
+        <div class="field"><label for="ocr-text">Text to render</label><input type="text" id="ocr-text" value="Invoice #4821 · Total due: 1,250.00 EGP"></div>
+        <div class="field"><label for="ocr-noise">Distortion <output id="ocr-noise-v">20</output></label><input type="range" id="ocr-noise" min="0" max="60" value="20"></div>
+        <div class="row">
+          <button class="btn btn-primary" id="ocr-run">Read text</button>
+          <label class="btn" for="ocr-file">Upload image</label>
+          <input type="file" id="ocr-file" accept="image/*" hidden>
+        </div>
+        <p class="note">This demo uses Tesseract.js so it can run entirely in your browser. My own <a href="#work" data-case="inkvision">InkVision</a> model, with custom attention layers, reached 95% accuracy and runs behind a server API.</p>
+      </div>
+    </div>
+
+    <!-- DEFECT -->
+    <div class="panel" role="tabpanel" id="p-defect" aria-labelledby="t-defect">
+      <div class="card stage">
+        <div class="stage-top"><div class="win-dots"><i></i><i></i><i></i></div><span id="dd-verdict" class="verdict pass">● PASS</span></div>
+        <div class="canvas-wrap">
+          <canvas id="dd-canvas" width="640" height="400" aria-label="Metal surface inspected for defects. Draw on it to add scratches."></canvas>
+          <span class="canvas-hint">✎ draw to add a scratch</span>
+        </div>
+        <div class="field"><span class="lbl">Pipeline stage</span>
+          <div class="seg" id="dd-stage">
+            <button aria-pressed="false" data-stage="original">Input</button>
+            <button aria-pressed="false" data-stage="gray">Gray</button>
+            <button aria-pressed="false" data-stage="blur">Blur</button>
+            <button aria-pressed="false" data-stage="thresh">Threshold</button>
+            <button aria-pressed="false" data-stage="morph">Morphology</button>
+            <button aria-pressed="true" data-stage="detect">Detections</button>
+          </div>
+        </div>
+      </div>
+      <div class="card controls">
+        <h3>Defect Detector</h3>
+        <p class="desc">The same classic computer vision pipeline I used in IllumiScan, written in plain JavaScript: grayscale → blur → adaptive threshold → morphological closing → connected components, keeping only regions above the minimum area.</p>
+        <div class="readout">
+          <div><b id="dd-count">0</b><span>defects</span></div>
+          <div><b id="dd-area">0</b><span>px² flagged</span></div>
+          <div><b id="dd-ms">0</b><span>ms</span></div>
+        </div>
+        <div class="field"><label for="dd-sens">Sensitivity <output id="dd-sens-v">22</output></label><input type="range" id="dd-sens" min="5" max="36" value="22"></div>
+        <div class="field"><label for="dd-min">Min defect area (px²) <output id="dd-min-v">30</output></label><input type="range" id="dd-min" min="5" max="200" value="30"></div>
+        <div class="row">
+          <button class="btn btn-primary" id="dd-new">New part</button>
+          <button class="btn" id="dd-clean">Clean part</button>
+          <label class="btn" for="dd-file">Upload</label>
+          <input type="file" id="dd-file" accept="image/*" hidden>
+        </div>
+        <p class="note">Why classic CV rather than deep learning? On a production line with controlled lighting it needs no training data, runs in milliseconds on cheap hardware, and every decision can be explained. <a href="#work" data-case="illumiscan">Read the case study</a>.</p>
+      </div>
+    </div>
+
+    <!-- AUGMENT -->
+    <div class="panel" role="tabpanel" id="p-aug" aria-labelledby="t-aug">
+      <div class="card stage">
+        <div class="stage-top"><div class="win-dots"><i></i><i></i><i></i></div><span class="mono">augment.batch(8)</span></div>
+        <div class="aug-src">
+          <canvas id="aug-src" width="256" height="256" aria-label="Source leaf image"></canvas>
+          <div>
+            <p class="mono" style="margin-bottom:.35rem">Source sample</p>
+            <p style="color:var(--muted);font-size:.9rem">Each training step sees a slightly different version of this leaf. The model learns what the disease looks like, rather than memorizing one photo.</p>
+          </div>
+        </div>
+        <div class="aug-grid" id="aug-grid" aria-label="Augmented variants"></div>
+        <div class="balance" id="balance">
+          <div class="balance-head">
+            <span class="mono">Images per class (illustrative)</span>
+            <div class="legend"><span><i class="sw-orig"></i>original</span><span><i class="sw-aug"></i>augmented</span></div>
+          </div>
+          <div id="balance-rows"></div>
+        </div>
+      </div>
+      <div class="card controls">
+        <h3>Augmentation Lab</h3>
+        <p class="desc">Two problems the Tomato Disease Pipeline had to solve: too few real field photos, and some diseases being far rarer than others.</p>
+        <div class="field"><label for="aug-class">Disease class</label>
+          <select id="aug-class">
+            <option value="healthy">Healthy</option>
+            <option value="early" selected>Early blight</option>
+            <option value="late">Late blight</option>
+            <option value="mold">Leaf mold</option>
+          </select>
+        </div>
+        <div class="field"><span class="lbl">Transforms</span>
+          <div class="checks" id="aug-ops">
+            <label><input type="checkbox" value="flip" checked>flip</label>
+            <label><input type="checkbox" value="rotate" checked>rotate</label>
+            <label><input type="checkbox" value="zoom" checked>zoom</label>
+            <label><input type="checkbox" value="color" checked>color jitter</label>
+            <label><input type="checkbox" value="noise">noise</label>
+            <label><input type="checkbox" value="cutout">cutout</label>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" id="aug-run">New batch</button>
+          <label class="btn" for="aug-file">Use my photo</label>
+          <input type="file" id="aug-file" accept="image/*" hidden>
+        </div>
+        <div class="field"><span class="lbl">Class imbalance</span>
+          <div class="seg" id="aug-balance">
+            <button aria-pressed="true" data-bal="raw">Raw data</button>
+            <button aria-pressed="false" data-bal="fixed">Balanced</button>
+          </div>
+        </div>
+        <p class="note">The balanced view reduces the largest class and fills out the rare ones with augmented copies. Training also uses a weighted loss, so a rare disease like mosaic virus is less likely to be missed. <a href="#work" data-case="tomato">See the pipeline</a>.</p>
+      </div>
+    </div>
+
+    <!-- NN -->
+    <div class="panel" role="tabpanel" id="p-nn" aria-labelledby="t-nn">
+      <div class="card stage">
+        <div class="stage-top"><div class="win-dots"><i></i><i></i><i></i></div><span class="mono" id="nn-arch">2 → 12 → 12 → 2 · tanh · Adam</span></div>
+        <div class="canvas-wrap">
+          <canvas id="nn-canvas" width="640" height="400" aria-label="Decision boundary of a neural network. Click to add points."></canvas>
+          <span class="canvas-hint">click to add a point of the selected class</span>
+        </div>
+        <div class="readout">
+          <div><b id="nn-epoch">0</b><span>epoch</span></div>
+          <div><b id="nn-loss">–</b><span>loss</span></div>
+          <div><b id="nn-acc">–</b><span>accuracy</span></div>
+        </div>
+      </div>
+      <div class="card controls">
+        <h3>Neural Net Playground</h3>
+        <p class="desc">A small neural network written from scratch (forward pass, backpropagation and the Adam optimizer) and trained live in your browser. The colored background shows what it has learned.</p>
+        <div class="field"><span class="lbl">Dataset</span>
+          <div class="seg" id="nn-data">
+            <button aria-pressed="true" data-ds="spiral">Spiral</button>
+            <button aria-pressed="false" data-ds="circles">Circles</button>
+            <button aria-pressed="false" data-ds="moons">Moons</button>
+            <button aria-pressed="false" data-ds="xor">XOR</button>
+          </div>
+        </div>
+        <div class="field"><label for="nn-hidden">Hidden units / layer <output id="nn-hidden-v">12</output></label><input type="range" id="nn-hidden" min="2" max="24" value="12"></div>
+        <div class="field"><label for="nn-lr">Learning rate <output id="nn-lr-v">0.020</output></label><input type="range" id="nn-lr" min="1" max="100" value="20"></div>
+        <div class="field"><span class="lbl">Click adds</span>
+          <div class="seg" id="nn-cls">
+            <button aria-pressed="true" data-c="0">● Class A</button>
+            <button aria-pressed="false" data-c="1">● Class B</button>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-primary" id="nn-play">Train</button>
+          <button class="btn" id="nn-reset">Reset weights</button>
+        </div>
+        <p class="note">Try 2 hidden units on the spiral and watch it fail, then turn it up. Model capacity is something I tune on every real project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Selected Work</p>
+      <h2 class="section-title">Projects that <span class="grad-text">shipped</span></h2>
+      <p class="section-lead">For each one: the problem, how I solved it, and the result. Open a case study for the full story.</p>
+    </div>
+    <div class="work-grid">
+      <article class="card project reveal" data-skills="pytorch opencv python rest attention ocr">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="ocrGrad" x1="0" x2="1"><stop offset="0" stop-color="#50e3ff"/><stop offset="1" stop-color="#6366f1"/></linearGradient>
+              <clipPath id="scanClip"><rect width="0" height="230"><animate attributeName="width" values="0;400;0" dur="3.4s" repeatCount="indefinite"/></rect></clipPath>
+            </defs>
+            <g opacity="0.25" fill="#fff" font-family="monospace" font-size="20">
+              <text x="50" y="75">A B C D E F G</text><text x="50" y="125">ا ب ت ث ج ح خ</text><text x="50" y="175">1 2 3 4 5 6 7</text>
+            </g>
+            <g clip-path="url(#scanClip)" fill="url(#ocrGrad)" font-family="monospace" font-size="20" font-weight="bold">
+              <text x="50" y="75">A B C D E F G</text><text x="50" y="125">ا ب ت ث ج ح خ</text><text x="50" y="175">1 2 3 4 5 6 7</text>
+            </g>
+            <line y1="0" y2="230" stroke="#50e3ff" stroke-width="3"><animate attributeName="x1" values="0;400;0" dur="3.4s" repeatCount="indefinite"/><animate attributeName="x2" values="0;400;0" dur="3.4s" repeatCount="indefinite"/></line>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="mono">2024 · Computer Vision</span><span class="result-badge">95% accuracy</span></div>
+          <h3>InkVision OCR</h3>
+          <p>An OCR engine for more than one language, built in PyTorch with custom attention layers. It reads Arabic and Latin text, and mobile apps use it in real time through a REST API.</p>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">OpenCV</span><span class="chip">Attention</span><span class="chip">REST API</span></div>
+          <div class="project-actions">
+            <button class="btn btn-sm btn-primary" data-case="inkvision">Case study</button>
+            <button class="btn btn-sm" data-demo="ocr">Try demo</button>
+            <a class="btn btn-sm" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-skills="pytorch tensorflow python edge data">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M200,210 Q200,100 250,45" fill="none" stroke="#a6f65d" stroke-width="4" stroke-dasharray="200" stroke-dashoffset="200"><animate attributeName="stroke-dashoffset" values="200;0;0" keyTimes="0;0.4;1" dur="5s" repeatCount="indefinite"/></path>
+            <path d="M200,150 Q150,120 120,75" fill="none" stroke="#a6f65d" stroke-width="4" stroke-dasharray="150" stroke-dashoffset="150"><animate attributeName="stroke-dashoffset" values="150;150;0;0" keyTimes="0;0.15;0.5;1" dur="5s" repeatCount="indefinite"/></path>
+            <circle cx="250" cy="45" r="9" fill="#ff8c42"><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.45;0.5;1" dur="5s" repeatCount="indefinite"/></circle>
+            <rect x="228" y="23" width="44" height="44" rx="4" fill="none" stroke="#50e3ff" stroke-width="2" stroke-dasharray="6 4"><animate attributeName="opacity" values="0;0;1;0.4;1" keyTimes="0;0.55;0.65;0.8;1" dur="5s" repeatCount="indefinite"/></rect>
+            <text x="280" y="40" fill="#50e3ff" font-family="monospace" font-size="11"><animate attributeName="opacity" values="0;0;1" keyTimes="0;0.65;1" dur="5s" repeatCount="indefinite"/>early_blight 0.97</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="mono">2024 · ML Pipeline</span><span class="result-badge">End-to-end</span></div>
+          <h3>Tomato Disease Pipeline</h3>
+          <p>A full computer vision pipeline: collecting the images, augmenting them, balancing rare classes, training the model, and optimizing it to run on field hardware.</p>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Edge ML</span><span class="chip">Data Eng.</span></div>
+          <div class="project-actions">
+            <button class="btn btn-sm btn-primary" data-case="tomato">Case study</button>
+            <button class="btn btn-sm" data-demo="aug">Try demo</button>
+            <a class="btn btn-sm" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-skills="opencv python image">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.08)"/></pattern>
+            <rect width="100%" height="100%" fill="url(#grid)"/>
+            <rect x="100" y="65" width="200" height="100" rx="10" fill="none" stroke="#6366f1" stroke-width="2"/>
+            <path d="M 240,90 Q 250,80 260,100 Q 250,110 240,90" fill="#ff8c42"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/></path>
+            <rect x="232" y="76" width="36" height="34" fill="none" stroke="#ff8c42" stroke-width="1.5"><animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/></rect>
+            <line x1="100" x2="300" stroke="#50e3ff" stroke-width="2"><animate attributeName="y1" values="65;165;65" dur="2s" repeatCount="indefinite"/><animate attributeName="y2" values="65;165;65" dur="2s" repeatCount="indefinite"/></line>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="mono">2023 · Industrial QA</span><span class="result-badge">92% validated</span></div>
+          <h3>IllumiScan Defect Detection</h3>
+          <p>Automatic detection of visual defects for industrial quality checks, using custom OpenCV preprocessing, contour detection and morphological operations.</p>
+          <div class="chips"><span class="chip">OpenCV</span><span class="chip">Python</span><span class="chip">Image Processing</span></div>
+          <div class="project-actions">
+            <button class="btn btn-sm btn-primary" data-case="illumiscan">Case study</button>
+            <button class="btn btn-sm" data-demo="defect">Try demo</button>
+            <a class="btn btn-sm" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-skills="flutter node mongodb typescript">
+        <div class="project-visual">
+          <svg viewBox="0 0 400 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g>
+              <rect x="60" y="190" width="40" height="0" rx="4" fill="#6366f1"><animate attributeName="height" values="0;90;90;0" keyTimes="0;0.3;0.85;1" dur="5s" repeatCount="indefinite"/><animate attributeName="y" values="190;100;100;190" keyTimes="0;0.3;0.85;1" dur="5s" repeatCount="indefinite"/></rect>
+              <rect x="135" y="190" width="40" height="0" rx="4" fill="#a855f7"><animate attributeName="height" values="0;0;140;140;0" keyTimes="0;0.05;0.35;0.85;1" dur="5s" repeatCount="indefinite"/><animate attributeName="y" values="190;190;50;50;190" keyTimes="0;0.05;0.35;0.85;1" dur="5s" repeatCount="indefinite"/></rect>
+              <rect x="210" y="190" width="40" height="0" rx="4" fill="#50e3ff"><animate attributeName="height" values="0;0;110;110;0" keyTimes="0;0.1;0.4;0.85;1" dur="5s" repeatCount="indefinite"/><animate attributeName="y" values="190;190;80;80;190" keyTimes="0;0.1;0.4;0.85;1" dur="5s" repeatCount="indefinite"/></rect>
+              <rect x="285" y="190" width="40" height="0" rx="4" fill="#a6f65d"><animate attributeName="height" values="0;0;160;160;0" keyTimes="0;0.15;0.45;0.85;1" dur="5s" repeatCount="indefinite"/><animate attributeName="y" values="190;190;30;30;190" keyTimes="0;0.15;0.45;0.85;1" dur="5s" repeatCount="indefinite"/></rect>
+            </g>
+            <line x1="40" y1="191" x2="360" y2="191" stroke="rgba(255,255,255,0.15)"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="mono">2024 · Full-stack</span><span class="result-badge">Mobile + API</span></div>
+          <h3>MoneyFlow Finance App</h3>
+          <p>A full-stack app for managing expenses: a Flutter mobile client, a Node.js + MongoDB backend, real-time analytics dashboards and JWT login.</p>
+          <div class="chips"><span class="chip">Flutter</span><span class="chip">Node.js</span><span class="chip">MongoDB</span><span class="chip">TypeScript</span></div>
+          <div class="project-actions">
+            <button class="btn btn-sm btn-primary" data-case="moneyflow">Case study</button>
+            <a class="btn btn-sm" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<dialog class="case" id="case" aria-labelledby="case-title">
+  <button class="case-close" id="case-close" aria-label="Close case study">✕</button>
+  <div class="case-inner" id="case-body"></div>
+</dialog>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Skills</p>
+      <h2 class="section-title">The <span class="grad-text">toolkit</span></h2>
+      <p class="section-lead">Click any skill to see where I've used it in real work.</p>
+    </div>
+    <div class="skills-layout">
+      <div class="skill-groups" id="skill-groups"></div>
+      <aside class="card skill-panel" id="skill-panel" aria-live="polite"></aside>
+    </div>
+
+    <div class="langs">
+      <div class="card lang-card reveal">
+        <h3>Programming languages</h3>
+        <p>What I write day to day, and how deep I go in each.</p>
+        <div class="code-langs" id="code-langs"></div>
+      </div>
+      <div class="card lang-card reveal">
+        <h3>Spoken languages</h3>
+        <p>I work with clients and teams in Arabic and English.</p>
+        <div class="spoken" id="spoken"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Experience</p>
+      <h2 class="section-title">Where I've <span class="grad-text">worked</span></h2>
+    </div>
+    <div class="timeline">
+      <article class="card tl-item now reveal">
+        <div class="tl-date">2026 — Present<small>Training program</small></div>
+        <div>
+          <h3>ML Engineering Trainee</h3>
+          <div class="tl-org">DEPI · AWS ML Engineer Track</div>
+          <p>Building hands-on depth in AWS ML engineering and MLOps: model versioning and monitoring, plus data engineering for pipelines that scale.</p>
+          <div class="chips"><span class="chip">AWS SageMaker</span><span class="chip">MLOps</span><span class="chip">ML Pipelines</span></div>
+        </div>
+      </article>
+      <article class="card tl-item now reveal">
+        <div class="tl-date">2025 — Present<small>Remote · Contract</small></div>
+        <div>
+          <h3>AI Trainer &amp; Model Evaluator</h3>
+          <div class="tl-org">Alignerr (Labelbox)</div>
+          <p>I evaluate generative AI outputs for logic and ethics, and write RLHF training data in machine learning and software engineering.</p>
+          <div class="chips"><span class="chip">RLHF</span><span class="chip">GenAI Evaluation</span><span class="chip">AI Ethics</span></div>
+        </div>
+      </article>
+      <article class="card tl-item reveal">
+        <div class="tl-date">Jul 2025<small>Internship</small></div>
+        <div>
+          <h3>AI &amp; Data Analysis Intern</h3>
+          <div class="tl-org">Ministry of Communications &amp; IT</div>
+          <p>Built Power BI dashboards and data pipelines, developed C#/.NET backend modules, and applied AI ethics frameworks in a government setting.</p>
+          <div class="chips"><span class="chip">Power BI</span><span class="chip">C# / .NET</span><span class="chip">Data Pipelines</span></div>
+        </div>
+      </article>
+      <article class="card tl-item reveal">
+        <div class="tl-date">2020 — 2023<small>Co-founder</small></div>
+        <div>
+          <h3>Co-Founder &amp; Tech Director</h3>
+          <div class="tl-org">Empire Robotics &amp; Innovation Hub</div>
+          <p>Co-founded a student tech incubator, mentored 20+ peers in robotics and software engineering, and grew the community by 150% in two years.</p>
+          <div class="chips"><span class="chip">Leadership</span><span class="chip">Robotics</span><span class="chip">Community</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Recognition</p>
+      <h2 class="section-title">Awards &amp; <span class="grad-text">honours</span></h2>
+    </div>
+    <div class="awards">
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+        <h3>NASA Space Apps Challenge</h3><p>International hackathon · 2021</p><div class="rank">Winner</div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg></div>
+        <h3>Intel ISEF Egypt</h3><p>Science &amp; engineering fair · 2021</p><div class="rank">National Finalist</div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h6v6M15 3v6h6M9 21v-6h6"/></svg></div>
+        <h3>IEEE Micromouse</h3><p>Autonomous maze robotics · 2019</p><div class="rank">3rd Place</div>
+      </div>
+      <div class="card award reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+        <h3>October STEM High School</h3><p>GPA 4.0 · 2023</p><div class="rank">Valedictorian</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-orb" aria-hidden="true"></div>
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 class="contact-title">Let's build something <span class="grad-text">intelligent.</span></h2>
+      <p class="section-lead">Tell me what you're working on. I usually reply within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="card brief reveal" id="brief" novalidate>
+        <div class="field"><span class="lbl">What do you need?</span>
+          <div class="pick" id="pick-service">
+            <button type="button" aria-pressed="false">Computer vision / OCR</button>
+            <button type="button" aria-pressed="false">ML to production</button>
+            <button type="button" aria-pressed="false">App (Flutter / Node)</button>
+            <button type="button" aria-pressed="false">Dashboard / data</button>
+            <button type="button" aria-pressed="false">Job / internship offer</button>
+          </div>
+        </div>
+        <div class="field"><span class="lbl">Timeline</span>
+          <div class="pick" id="pick-time">
+            <button type="button" aria-pressed="false">Under 2 weeks</button>
+            <button type="button" aria-pressed="false">About a month</button>
+            <button type="button" aria-pressed="false">2–3 months</button>
+            <button type="button" aria-pressed="false">Flexible</button>
+          </div>
+        </div>
+        <div class="field"><label for="b-name">Your name</label><input type="text" id="b-name" autocomplete="name" placeholder="Jane from Acme"></div>
+        <div class="field"><label for="b-msg">Project details</label><textarea id="b-msg" placeholder="What are you building, what data do you have, and what would success look like?"></textarea></div>
+        <button class="btn btn-primary" type="submit">Send brief by email →</button>
+      </form>
+      <div class="card channels reveal">
+        <button class="channel" id="copy-email" type="button" style="text-align:left;font:inherit;color:inherit;width:100%">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span>
+          <span><b>Email</b><small>elkenawyziad@gmail.com</small></span><span class="go">copy</span>
+        </button>
+        <a class="channel" href="https://linkedin.com/in/ziad-hanafi-17aa80197" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></span>
+          <span><b>LinkedIn</b><small>ziad-hanafi</small></span><span class="go">↗</span>
+        </a>
+        <a class="channel" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></span>
+          <span><b>GitHub</b><small>Ziad-irl</small></span><span class="go">↗</span>
+        </a>
+        <a class="channel" href="ziad_hanafi_CV.pdf" download>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg></span>
+          <span><b>Résumé / CV</b><small>PDF download</small></span><span class="go">↓</span>
+        </a>
+        <div class="avail"><span class="dot"></span><span>Based in Cairo (GMT+2/3) and working with clients worldwide. Open to freelance projects, ML internships and full-time ML roles.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <span>© <span id="year">2026</span> Ziad Hanafi · Cairo, Egypt</span>
+    <span><a href="#top">Back to top ↑</a></span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script>
+(() => {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EMAIL = 'elkenawyziad@gmail.com';
+$('#year').textContent = new Date().getFullYear();
+
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 2400);
+}
+function setPressed(group, btn) {
+  $$('button', group).forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+}
+function loadImageFile(file) {
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = url;
+  });
+}
+function drawCover(ctx, img, w, h) {
+  const s = Math.max(w / img.width, h / img.height);
+  const iw = img.width * s, ih = img.height * s;
+  ctx.drawImage(img, (w - iw) / 2, (h - ih) / 2, iw, ih);
+}
+function mulberry32(a) {
+  return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+
+/* ---------- NAV ---------- */
+const nav = $('#nav'), burger = $('#burger'), progress = $('#progress');
+function onScroll() {
+  nav.classList.toggle('scrolled', scrollY > 20);
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+}
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+burger.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  burger.setAttribute('aria-expanded', String(open));
+});
+$$('#nav-links a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }));
+const navMap = new Map($$('#nav-links a').map(a => [a.getAttribute('href').slice(1), a]));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { navMap.forEach(a => a.classList.remove('active')); const a = navMap.get(e.target.id); if (a) a.classList.add('active'); }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+navMap.forEach((_, id) => { const s = document.getElementById(id); if (s) secObs.observe(s); });
+
+/* ---------- REVEAL + COUNTERS ---------- */
+const revObs = new IntersectionObserver((entries, o) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.unobserve(e.target); } });
+}, { threshold: 0.12 });
+$$('.reveal').forEach((el, i) => { el.style.transitionDelay = `${(i % 4) * 70}ms`; revObs.observe(el); });
+
+$$('[data-count]').forEach(el => {
+  const target = +el.dataset.count;
+  if (reduceMotion) { el.textContent = target; return; }
+  const start = performance.now() + 500, dur = 1600;
+  (function tick(now) {
+    const p = Math.min(1, Math.max(0, (now - start) / dur));
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(tick);
+  })(performance.now());
+});
+
+/* ---------- TYPED ROTATOR ---------- */
+(function rotator() {
+  const el = $('#typed');
+  const words = ['computer vision systems', 'OCR for Arabic & English', 'ML models that ship', 'defect detection for QA', 'Flutter apps with AI inside', 'data pipelines & dashboards'];
+  if (reduceMotion) return;
+  let w = 0, i = words[0].length, del = true;
+  setTimeout(function step() {
+    const word = words[w];
+    i += del ? -1 : 1;
+    el.textContent = word.slice(0, i);
+    let delay = del ? 28 : 55;
+    if (!del && i === word.length) { del = true; delay = 2200; }
+    else if (del && i === 0) { del = false; w = (w + 1) % words.length; delay = 300; }
+    setTimeout(step, delay);
+  }, 2600);
+})();
+
+/* ---------- CARD SPOTLIGHT ---------- */
+document.addEventListener('pointermove', e => {
+  const card = e.target.closest && e.target.closest('.card');
+  if (!card) return;
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  card.style.setProperty('--my', `${e.clientY - r.top}px`);
+}, { passive: true });
+
+/* ---------- HERO WEBGL ---------- */
+addEventListener('load', function initHero() {
+  const canvas = $('#hero-gl');
+  if (!window.THREE || reduceMotion) return;
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.z = 7;
+  const group = new THREE.Group(); scene.add(group);
+
+  const uniforms = { uTime: { value: 0 }, uAmp: { value: 0.18 }, uPixel: { value: renderer.getPixelRatio() } };
+  const material = new THREE.ShaderMaterial({
+    uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `
+      attribute float aRnd;
+      uniform float uTime; uniform float uAmp; uniform float uPixel;
+      varying float vMix; varying float vAlpha;
+      void main() {
+        vec3 p = position;
+        vec3 n = normalize(p);
+        float w = sin(p.x * 2.1 + uTime * 0.9) * cos(p.y * 2.7 - uTime * 0.7) + 0.5 * sin(p.z * 3.3 + uTime * 1.1);
+        p += n * w * uAmp;
+        vec4 mv = modelViewMatrix * vec4(p, 1.0);
+        gl_Position = projectionMatrix * mv;
+        gl_PointSize = (1.0 + aRnd * 2.4) * uPixel * (7.0 / -mv.z);
+        vMix = clamp(w * 0.5 + 0.5, 0.0, 1.0);
+        vAlpha = 0.25 + aRnd * 0.6;
+      }`,
+    fragmentShader: `
+      varying float vMix; varying float vAlpha;
+      void main() {
+        float d = length(gl_PointCoord - 0.5);
+        if (d > 0.5) discard;
+        vec3 a = vec3(0.314, 0.89, 1.0);
+        vec3 b = vec3(0.659, 0.333, 0.969);
+        gl_FragColor = vec4(mix(a, b, vMix), (1.0 - d * 2.0) * vAlpha);
+      }`
+  });
+  function points(N, fn) {
+    const pos = new Float32Array(N * 3), rnd = new Float32Array(N);
+    for (let i = 0; i < N; i++) { const v = fn(i, N); pos.set(v, i * 3); rnd[i] = Math.random(); }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('aRnd', new THREE.BufferAttribute(rnd, 1));
+    return new THREE.Points(g, material);
+  }
+  const sphere = points(5000, (i, N) => {
+    const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
+    return [Math.cos(th) * r * 2, y * 2, Math.sin(th) * r * 2];
+  });
+  const ring = points(1400, () => {
+    const a = Math.random() * Math.PI * 2, r = 2.9 + Math.random() * 0.6;
+    return [Math.cos(a) * r, (Math.random() - 0.5) * 0.12, Math.sin(a) * r];
+  });
+  ring.rotation.x = 1.15; ring.rotation.y = 0.3;
+  group.add(sphere, ring);
+
+  const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+  addEventListener('pointermove', e => { mouse.tx = e.clientX / innerWidth * 2 - 1; mouse.ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+
+  function resize() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+    const wide = w > 900;
+    group.position.set(wide ? 2.1 : 0, wide ? 0 : 1.4, 0);
+    group.scale.setScalar(wide ? 1 : 0.8);
+  }
+  resize(); addEventListener('resize', resize);
+
+  let visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(canvas);
+  const clock = new THREE.Clock();
+  (function loop() {
+    requestAnimationFrame(loop);
+    if (!visible || document.hidden) return;
+    const t = clock.getElapsedTime();
+    mouse.x += (mouse.tx - mouse.x) * 0.05; mouse.y += (mouse.ty - mouse.y) * 0.05;
+    uniforms.uTime.value = t;
+    uniforms.uAmp.value = 0.16 + Math.hypot(mouse.x, mouse.y) * 0.14;
+    group.rotation.y = t * 0.08 + mouse.x * 0.35;
+    group.rotation.x = mouse.y * 0.2;
+    ring.rotation.z = t * 0.05;
+    renderer.render(scene, camera);
+  })();
+});
+
+/* ---------- TABS ---------- */
+const tabs = $$('.tab');
+const demoInit = {};
+function selectTab(tab, focus) {
+  tabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+    document.getElementById(t.getAttribute('aria-controls')).classList.toggle('active', on);
+  });
+  if (focus) tab.focus();
+  const key = tab.id.slice(2);
+  if (demoInit[key] && !demoInit[key].done) { demoInit[key].done = true; demoInit[key](); }
+  if (key !== 'nn') nnPause();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener('click', () => selectTab(t));
+  t.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (d) { e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true); }
+  });
+});
+$$('[data-demo]').forEach(b => b.addEventListener('click', () => {
+  selectTab(document.getElementById('t-' + b.dataset.demo));
+  $('#lab').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+}));
+
+/* ---------- DEMO 1: OCR ---------- */
+const OCR_SAMPLES = { eng: 'Invoice #4821 · Total due: 1,250.00 EGP', ara: 'مرحبا بكم في معرض أعمالي للذكاء الاصطناعي' };
+const ocr = { lang: 'eng', workers: {}, uploaded: null, busy: false };
+demoInit.ocr = function () {
+  const cv = $('#ocr-canvas'), ctx = cv.getContext('2d', { willReadFrequently: true });
+  const ov = $('#ocr-overlay');
+  ocr.render = function () {
+    ov.getContext('2d').clearRect(0, 0, ov.width, ov.height);
+    if (ocr.uploaded) {
+      const img = ocr.uploaded, maxW = 1200;
+      const s = Math.min(1, maxW / img.width);
+      cv.width = ov.width = Math.round(img.width * s); cv.height = ov.height = Math.round(img.height * s);
+      ctx.drawImage(img, 0, 0, cv.width, cv.height);
+      return;
+    }
+    cv.width = ov.width = 720; cv.height = ov.height = 240;
+    const noise = +$('#ocr-noise').value, rand = mulberry32(7);
+    ctx.fillStyle = '#f3efe6'; ctx.fillRect(0, 0, 720, 240);
+    const g = ctx.createLinearGradient(0, 0, 720, 240);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, `rgba(60,40,10,${noise / 300})`);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, 720, 240);
+    ctx.strokeStyle = 'rgba(80,110,200,0.18)'; ctx.lineWidth = 1;
+    for (let y = 40; y < 240; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(720, y); ctx.stroke(); }
+    const text = $('#ocr-text').value || ' ';
+    const isAr = ocr.lang === 'ara';
+    ctx.save();
+    ctx.translate(360, 120); ctx.rotate((noise / 60) * -0.05);
+    ctx.fillStyle = '#16181f'; ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+    ctx.direction = isAr ? 'rtl' : 'ltr';
+    let size = isAr ? 44 : 40;
+    const fam = isAr ? '"Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif' : '600 {s}px "Inter", Arial, sans-serif';
+    const font = s => isAr ? `700 ${s}px ${fam}` : fam.replace('{s}', s);
+    ctx.font = font(size);
+    while (ctx.measureText(text).width > 660 && size > 14) { size -= 2; ctx.font = font(size); }
+    ctx.fillText(text, 0, 0);
+    ctx.restore();
+    if (noise > 0) {
+      const id = ctx.getImageData(0, 0, 720, 240), d = id.data, amp = noise * 1.6;
+      for (let i = 0; i < d.length; i += 4) {
+        const n = (rand() - 0.5) * amp;
+        d[i] += n; d[i + 1] += n; d[i + 2] += n;
+      }
+      ctx.putImageData(id, 0, 0);
+      ctx.fillStyle = 'rgba(30,30,30,0.5)';
+      for (let k = 0; k < noise * 2; k++) ctx.fillRect(rand() * 720, rand() * 240, 1.5, 1.5);
+    }
+  };
+  if (document.fonts) document.fonts.ready.then(ocr.render); else ocr.render();
+  ocr.render();
+
+  setPressed($('#ocr-lang'), $('#ocr-lang [data-lang="eng"]'));
+  $('#ocr-lang').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    setPressed($('#ocr-lang'), b); ocr.lang = b.dataset.lang;
+    if (!ocr.uploaded) $('#ocr-text').value = OCR_SAMPLES[ocr.lang];
+    $('#ocr-text').dir = ocr.lang === 'ara' ? 'rtl' : 'ltr';
+    ocr.render();
+  });
+  $('#ocr-text').addEventListener('input', () => { ocr.uploaded = null; ocr.render(); });
+  $('#ocr-noise').addEventListener('input', e => { $('#ocr-noise-v').textContent = e.target.value; ocr.render(); });
+  $('#ocr-file').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { ocr.uploaded = await loadImageFile(f); ocr.render(); toast('Image loaded. Pick the script, then press Read text.'); }
+    catch { toast('Could not read that image.'); }
+    e.target.value = '';
+  });
+  $('#ocr-run').addEventListener('click', runOCR);
+};
+function loadScript(src) {
+  return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+}
+async function runOCR() {
+  if (ocr.busy) return;
+  ocr.busy = true;
+  const btn = $('#ocr-run'), status = $('#ocr-status'), bar = $('#ocr-bar'), out = $('#ocr-out');
+  btn.disabled = true; btn.textContent = 'Reading…';
+  const lang = ocr.lang;
+  const t0 = performance.now();
+  try {
+    if (!window.Tesseract) { status.textContent = 'Loading OCR engine…'; await loadScript('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js'); }
+    if (!ocr.workers[lang]) {
+      ocr.workers[lang] = await Tesseract.createWorker(lang, 1, {
+        logger: m => {
+          if (m.status) status.textContent = m.status.charAt(0).toUpperCase() + m.status.slice(1) + (m.progress ? ` · ${Math.round(m.progress * 100)}%` : '');
+          bar.style.width = `${Math.round((m.progress || 0) * 100)}%`;
+        }
+      });
+    }
+    const { data } = await ocr.workers[lang].recognize($('#ocr-canvas'));
+    const ms = Math.round(performance.now() - t0);
+    const text = (data.text || '').trim();
+    out.textContent = text || '(no text found; try less distortion or a clearer image)';
+    out.dir = lang === 'ara' ? 'rtl' : 'ltr';
+    const words = (data.words || []).filter(w => w.text.trim());
+    $('#ocr-meta').textContent = `${Math.round(data.confidence || 0)}% conf · ${words.length} words · ${ms} ms`;
+    const ov = $('#ocr-overlay'), octx = ov.getContext('2d');
+    octx.clearRect(0, 0, ov.width, ov.height);
+    octx.lineWidth = Math.max(2, ov.width / 360); octx.font = `${Math.max(11, ov.width / 60)}px "JetBrains Mono", monospace`;
+    words.forEach(w => {
+      const b = w.bbox, good = w.confidence >= 70;
+      octx.strokeStyle = good ? '#50e3ff' : '#ff8c42';
+      octx.fillStyle = good ? 'rgba(80,227,255,0.12)' : 'rgba(255,140,66,0.14)';
+      octx.fillRect(b.x0, b.y0, b.x1 - b.x0, b.y1 - b.y0);
+      octx.strokeRect(b.x0, b.y0, b.x1 - b.x0, b.y1 - b.y0);
+      octx.fillStyle = good ? '#0891b2' : '#c2410c';
+      octx.fillText(Math.round(w.confidence), b.x0, Math.max(10, b.y0 - 4));
+    });
+    status.textContent = 'Done. Cyan boxes are confident words; orange ones are uncertain.';
+    bar.style.width = '100%';
+  } catch (err) {
+    console.error(err);
+    status.textContent = 'The OCR engine could not load. Check your connection and try again.';
+  } finally {
+    ocr.busy = false; btn.disabled = false; btn.textContent = 'Read text';
+  }
+}
+
+/* ---------- DEMO 2: DEFECT DETECTION ---------- */
+const dd = { W: 640, H: 400, stage: 'detect', res: null };
+demoInit.defect = function () {
+  const cv = $('#dd-canvas'), ctx = cv.getContext('2d', { willReadFrequently: true });
+  const src = document.createElement('canvas'); src.width = dd.W; src.height = dd.H;
+  const sctx = src.getContext('2d', { willReadFrequently: true });
+  dd.cv = cv; dd.ctx = ctx; dd.src = src; dd.sctx = sctx;
+
+  function surface(seed) {
+    const r = mulberry32(seed), { W, H } = dd;
+    const img = sctx.createImageData(W, H), d = img.data;
+    const rows = new Float32Array(H); let v = 0;
+    for (let y = 0; y < H; y++) { v = v * 0.85 + (r() - 0.5) * 0.9; rows[y] = v; }
+    const lx = W * (0.2 + r() * 0.3), ly = H * (0.1 + r() * 0.3);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const dist = Math.hypot(x - lx, y - ly) / W;
+      const base = 178 - dist * 70 + rows[y] * 9 + (r() - 0.5) * 12;
+      const i = (y * W + x) * 4;
+      d[i] = base - 4; d[i + 1] = base; d[i + 2] = base + 8; d[i + 3] = 255;
+    }
+    sctx.putImageData(img, 0, 0);
+  }
+  function addDefects(seed) {
+    const r = mulberry32(seed * 31 + 1), { W, H } = dd;
+    const n = 2 + Math.floor(r() * 3);
+    for (let k = 0; k < n; k++) {
+      const kind = r();
+      const x = 60 + r() * (W - 120), y = 50 + r() * (H - 100);
+      sctx.save();
+      if (kind < 0.45) {
+        sctx.strokeStyle = `rgba(40,40,48,${0.65 + r() * 0.3})`; sctx.lineWidth = 1.5 + r() * 2; sctx.lineCap = 'round';
+        sctx.beginPath(); sctx.moveTo(x, y);
+        sctx.bezierCurveTo(x + (r() - 0.5) * 120, y + (r() - 0.5) * 80, x + (r() - 0.5) * 160, y + (r() - 0.5) * 100, x + (r() - 0.5) * 180, y + (r() - 0.5) * 120);
+        sctx.stroke();
+      } else if (kind < 0.8) {
+        const rad = 4 + r() * 8;
+        const g = sctx.createRadialGradient(x, y, 0, x, y, rad);
+        g.addColorStop(0, 'rgba(50,35,25,0.95)'); g.addColorStop(0.7, 'rgba(70,50,35,0.7)'); g.addColorStop(1, 'rgba(70,50,35,0)');
+        sctx.fillStyle = g; sctx.beginPath(); sctx.arc(x, y, rad, 0, Math.PI * 2); sctx.fill();
+      } else {
+        sctx.translate(x, y); sctx.rotate(r() * Math.PI);
+        const g = sctx.createRadialGradient(0, 0, 0, 0, 0, 22);
+        g.addColorStop(0, 'rgba(30,30,40,0.6)'); g.addColorStop(1, 'rgba(30,30,40,0)');
+        sctx.fillStyle = g; sctx.scale(1.8, 0.7); sctx.beginPath(); sctx.arc(0, 0, 22, 0, Math.PI * 2); sctx.fill();
+      }
+      sctx.restore();
+    }
+  }
+  let seed = 3;
+  dd.newPart = (clean) => { seed++; surface(seed); if (!clean) addDefects(seed); ddRun(); };
+  dd.newPart(false);
+
+  // painting scratches
+  let drawing = false, last = null;
+  const toXY = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * dd.W / r.width, (e.clientY - r.top) * dd.H / r.height]; };
+  cv.addEventListener('pointerdown', e => { drawing = true; last = toXY(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => {
+    if (!drawing) return;
+    const p = toXY(e);
+    sctx.strokeStyle = 'rgba(38,38,46,0.85)'; sctx.lineWidth = 2.5; sctx.lineCap = 'round';
+    sctx.beginPath(); sctx.moveTo(last[0], last[1]); sctx.lineTo(p[0], p[1]); sctx.stroke();
+    last = p;
+    ctx.drawImage(src, 0, 0);
+  });
+  const end = () => { if (drawing) { drawing = false; ddRun(); } };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+
+  $('#dd-stage').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setPressed($('#dd-stage'), b); dd.stage = b.dataset.stage; ddRender(); });
+  $('#dd-sens').addEventListener('input', e => { $('#dd-sens-v').textContent = e.target.value; ddRun(); });
+  $('#dd-min').addEventListener('input', e => { $('#dd-min-v').textContent = e.target.value; ddRun(); });
+  $('#dd-new').addEventListener('click', () => dd.newPart(false));
+  $('#dd-clean').addEventListener('click', () => dd.newPart(true));
+  $('#dd-file').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { const img = await loadImageFile(f); sctx.fillStyle = '#000'; sctx.fillRect(0, 0, dd.W, dd.H); drawCover(sctx, img, dd.W, dd.H); ddRun(); }
+    catch { toast('Could not read that image.'); }
+    e.target.value = '';
+  });
+};
+function boxBlur(src, W, H, r) {
+  const tmp = new Float32Array(W * H), out = new Float32Array(W * H), win = 2 * r + 1;
+  for (let y = 0; y < H; y++) {
+    let acc = 0; const row = y * W;
+    for (let x = -r; x <= r; x++) acc += src[row + Math.min(W - 1, Math.max(0, x))];
+    for (let x = 0; x < W; x++) {
+      tmp[row + x] = acc / win;
+      acc += src[row + Math.min(W - 1, x + r + 1)] - src[row + Math.max(0, x - r)];
+    }
+  }
+  for (let x = 0; x < W; x++) {
+    let acc = 0;
+    for (let y = -r; y <= r; y++) acc += tmp[Math.min(H - 1, Math.max(0, y)) * W + x];
+    for (let y = 0; y < H; y++) {
+      out[y * W + x] = acc / win;
+      acc += tmp[Math.min(H - 1, y + r + 1) * W + x] - tmp[Math.max(0, y - r) * W + x];
+    }
+  }
+  return out;
+}
+function morph(mask, W, H, dilate) {
+  const out = new Uint8Array(W * H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    let v = dilate ? 0 : 1;
+    for (let dy = -1; dy <= 1 && (dilate ? !v : v); dy++) for (let dx = -1; dx <= 1; dx++) {
+      const xx = x + dx, yy = y + dy;
+      const m = (xx < 0 || yy < 0 || xx >= W || yy >= H) ? (dilate ? 0 : 1) : mask[yy * W + xx];
+      if (dilate && m) { v = 1; break; }
+      if (!dilate && !m) { v = 0; break; }
+    }
+    out[y * W + x] = v;
+  }
+  return out;
+}
+function ddRun() {
+  const { W, H, sctx } = dd, t0 = performance.now();
+  const d = sctx.getImageData(0, 0, W, H).data, N = W * H;
+  const gray = new Float32Array(N);
+  for (let i = 0; i < N; i++) gray[i] = 0.299 * d[i * 4] + 0.587 * d[i * 4 + 1] + 0.114 * d[i * 4 + 2];
+  const blur = boxBlur(boxBlur(gray, W, H, 1), W, H, 1);
+  const local = boxBlur(blur, W, H, 18);
+  const C = 41 - +$('#dd-sens').value;
+  const thresh = new Uint8Array(N);
+  for (let i = 0; i < N; i++) thresh[i] = blur[i] < local[i] - C ? 1 : 0;
+  // closing joins broken scratch fragments; specks are removed by the area filter below
+  const closed = morph(morph(thresh, W, H, true), W, H, false);
+  // connected components
+  const labels = new Int32Array(N), boxes = [], stack = new Int32Array(N), minA = +$('#dd-min').value;
+  let lab = 0, total = 0;
+  for (let i = 0; i < N; i++) {
+    if (!closed[i] || labels[i]) continue;
+    lab++; let sp = 0, area = 0, x0 = W, y0 = H, x1 = 0, y1 = 0;
+    stack[sp++] = i; labels[i] = lab;
+    while (sp) {
+      const p = stack[--sp], x = p % W, y = (p / W) | 0;
+      area++; if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+      const nb = [x > 0 ? p - 1 : -1, x < W - 1 ? p + 1 : -1, y > 0 ? p - W : -1, y < H - 1 ? p + W : -1];
+      for (const q of nb) if (q >= 0 && closed[q] && !labels[q]) { labels[q] = lab; stack[sp++] = q; }
+    }
+    if (area >= minA) { boxes.push({ x0, y0, x1, y1, area }); total += area; }
+  }
+  dd.res = { gray, blur, thresh, morph: closed, boxes };
+  $('#dd-ms').textContent = Math.max(1, Math.round(performance.now() - t0));
+  $('#dd-count').textContent = boxes.length;
+  $('#dd-area').textContent = total.toLocaleString();
+  const v = $('#dd-verdict');
+  v.className = 'verdict ' + (boxes.length ? 'fail' : 'pass');
+  v.textContent = boxes.length ? `● REJECT · ${boxes.length} defect${boxes.length > 1 ? 's' : ''}` : '● PASS';
+  ddRender();
+}
+function ddRender() {
+  const { W, H, ctx, src, res, stage } = dd;
+  if (!res) return;
+  if (stage === 'original' || stage === 'detect') {
+    ctx.drawImage(src, 0, 0);
+    if (stage === 'detect') {
+      const id = ctx.getImageData(0, 0, W, H), d = id.data;
+      for (let i = 0; i < W * H; i++) if (res.morph[i]) { d[i * 4] = d[i * 4] * 0.4 + 255 * 0.6; d[i * 4 + 1] = d[i * 4 + 1] * 0.4 + 140 * 0.6; d[i * 4 + 2] *= 0.4; }
+      ctx.putImageData(id, 0, 0);
+      ctx.lineWidth = 2; ctx.font = '600 12px "JetBrains Mono", monospace';
+      res.boxes.forEach((b, k) => {
+        const x = b.x0 - 4, y = b.y0 - 4, w = b.x1 - b.x0 + 8, h = b.y1 - b.y0 + 8;
+        ctx.strokeStyle = '#ff8c42'; ctx.strokeRect(x, y, w, h);
+        const label = `#${k + 1} ${b.area}px²`, tw = ctx.measureText(label).width + 8;
+        const ly = y > 18 ? y - 18 : y + h;
+        ctx.fillStyle = '#ff8c42'; ctx.fillRect(x - 1, ly, tw, 17);
+        ctx.fillStyle = '#1a0d00'; ctx.fillText(label, x + 3, ly + 12.5);
+      });
+    }
+    return;
+  }
+  const id = ctx.createImageData(W, H), d = id.data;
+  const arr = res[stage], bin = stage === 'thresh' || stage === 'morph';
+  for (let i = 0; i < W * H; i++) {
+    const v = bin ? (arr[i] ? 255 : 8) : arr[i];
+    d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = v; d[i * 4 + 3] = 255;
+    if (bin && arr[i]) { d[i * 4] = 80; d[i * 4 + 1] = 227; d[i * 4 + 2] = 255; }
+  }
+  ctx.putImageData(id, 0, 0);
+}
+
+/* ---------- DEMO 3: AUGMENTATION ---------- */
+const BAL = [
+  { name: 'Yellow leaf curl', n: 5357 }, { name: 'Bacterial spot', n: 2127 }, { name: 'Late blight', n: 1909 },
+  { name: 'Healthy', n: 1591 }, { name: 'Early blight', n: 1000 }, { name: 'Leaf mold', n: 952 }, { name: 'Mosaic virus', n: 373 }
+];
+const aug = { photo: null, seed: 1, balanced: false };
+demoInit.aug = function () {
+  const grid = $('#aug-grid');
+  for (let i = 0; i < 8; i++) {
+    const t = document.createElement('div'); t.className = 'aug-tile';
+    t.innerHTML = '<canvas width="160" height="160"></canvas><span></span>';
+    grid.appendChild(t);
+  }
+  const rows = $('#balance-rows');
+  BAL.forEach(c => {
+    const r = document.createElement('div'); r.className = 'brow'; r.tabIndex = 0;
+    r.innerHTML = `<span class="name">${c.name}</span><div class="track"><div class="o"></div><div class="a"></div></div><span class="val"></span>`;
+    r.dataset.name = c.name;
+    rows.appendChild(r);
+  });
+  const tip = $('#tip');
+  rows.addEventListener('pointermove', e => {
+    const r = e.target.closest('.brow'); if (!r) { tip.classList.remove('show'); return; }
+    tip.innerHTML = r.dataset.tip; tip.style.left = `${e.clientX + 14}px`; tip.style.top = `${e.clientY + 14}px`; tip.classList.add('show');
+  });
+  rows.addEventListener('pointerleave', () => tip.classList.remove('show'));
+  $('#aug-class').addEventListener('change', () => { aug.photo = null; augRun(); });
+  $('#aug-ops').addEventListener('change', augRun);
+  $('#aug-run').addEventListener('click', () => { aug.seed++; augRun(); });
+  $('#aug-balance').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setPressed($('#aug-balance'), b); aug.balanced = b.dataset.bal === 'fixed'; renderBalance(); });
+  $('#aug-file').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return;
+    try { aug.photo = await loadImageFile(f); augRun(); } catch { toast('Could not read that image.'); }
+    e.target.value = '';
+  });
+  augRun(); renderBalance();
+};
+function drawLeaf(ctx, cls, seed) {
+  const r = mulberry32(seed), S = 256;
+  const bg = ctx.createRadialGradient(128, 128, 20, 128, 128, 200);
+  bg.addColorStop(0, '#3b2f22'); bg.addColorStop(1, '#17120c');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, S, S);
+  ctx.save(); ctx.translate(128, 132); ctx.rotate(-0.5);
+  const leaf = new Path2D();
+  leaf.moveTo(0, -105);
+  leaf.bezierCurveTo(70, -80, 82, 10, 8, 95);
+  leaf.quadraticCurveTo(0, 104, -8, 95);
+  leaf.bezierCurveTo(-82, 10, -70, -80, 0, -105);
+  const lg = ctx.createLinearGradient(-60, -100, 60, 100);
+  const base = cls === 'mold' ? ['#6f9a3a', '#3d6b25'] : ['#58a33c', '#2e6b22'];
+  lg.addColorStop(0, base[0]); lg.addColorStop(1, base[1]);
+  ctx.fillStyle = lg; ctx.fill(leaf);
+  ctx.save(); ctx.clip(leaf);
+  ctx.strokeStyle = 'rgba(200,240,160,0.5)'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(0, -100); ctx.quadraticCurveTo(4, 0, 0, 100); ctx.stroke();
+  ctx.lineWidth = 1.2; ctx.strokeStyle = 'rgba(200,240,160,0.32)';
+  for (let k = -80; k < 85; k += 20) {
+    ctx.beginPath(); ctx.moveTo(1, k); ctx.quadraticCurveTo(30, k - 10, 64, k - 30); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-1, k); ctx.quadraticCurveTo(-30, k - 10, -64, k - 30); ctx.stroke();
+  }
+  if (cls === 'early') {
+    for (let k = 0; k < 9; k++) {
+      const x = (r() - 0.5) * 100, y = (r() - 0.5) * 160, rad = 5 + r() * 9;
+      ctx.fillStyle = 'rgba(220,210,60,0.45)'; ctx.beginPath(); ctx.arc(x, y, rad * 1.7, 0, 7); ctx.fill();
+      for (let q = 3; q > 0; q--) { ctx.fillStyle = q % 2 ? '#4a2c14' : '#6b4120'; ctx.beginPath(); ctx.arc(x, y, rad * q / 3, 0, 7); ctx.fill(); }
+    }
+  } else if (cls === 'late') {
+    for (let k = 0; k < 4; k++) {
+      const x = (r() > 0.5 ? 1 : -1) * (30 + r() * 40), y = (r() - 0.5) * 150;
+      ctx.fillStyle = 'rgba(52,44,28,0.88)'; ctx.beginPath();
+      for (let a = 0; a < 6.3; a += 0.4) { const rr = 18 + r() * 18; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); }
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(140,150,90,0.5)'; ctx.lineWidth = 3; ctx.stroke();
+    }
+  } else if (cls === 'mold') {
+    for (let k = 0; k < 14; k++) {
+      const x = (r() - 0.5) * 110, y = (r() - 0.5) * 170, rad = 6 + r() * 12;
+      const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+      g.addColorStop(0, 'rgba(235,220,90,0.85)'); g.addColorStop(1, 'rgba(235,220,90,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, rad, 0, 7); ctx.fill();
+    }
+  }
+  ctx.restore(); ctx.restore();
+}
+function augRun() {
+  const src = $('#aug-src'), sctx = src.getContext('2d');
+  if (aug.photo) { drawCover(sctx, aug.photo, 256, 256); }
+  else drawLeaf(sctx, $('#aug-class').value, 11);
+  const ops = new Set($$('#aug-ops input:checked').map(i => i.value));
+  const r = mulberry32(aug.seed * 977);
+  $$('#aug-grid .aug-tile').forEach(tile => {
+    const c = $('canvas', tile), ctx = c.getContext('2d', { willReadFrequently: true }), S = 160, tags = [];
+    ctx.fillStyle = '#17120c'; ctx.fillRect(0, 0, S, S);
+    ctx.save(); ctx.translate(S / 2, S / 2);
+    if (ops.has('rotate')) { const a = Math.round((r() - 0.5) * 60); ctx.rotate(a * Math.PI / 180); tags.push(`rot ${a > 0 ? '+' : ''}${a}°`); }
+    let sx = 1, sy = 1;
+    if (ops.has('flip')) { if (r() > 0.5) { sx = -1; tags.push('h-flip'); } if (r() > 0.7) { sy = -1; tags.push('v-flip'); } }
+    let z = 1; if (ops.has('zoom')) { z = 1 + r() * 0.45; tags.push(`zoom ${z.toFixed(2)}×`); }
+    ctx.scale(sx * z, sy * z);
+    ctx.drawImage(src, -S / 2, -S / 2, S, S);
+    ctx.restore();
+    if (ops.has('color') || ops.has('noise')) {
+      const id = ctx.getImageData(0, 0, S, S), d = id.data;
+      let b = 0, ct = 1, hue = 0;
+      if (ops.has('color')) { b = (r() - 0.5) * 70; ct = 0.75 + r() * 0.55; hue = (r() - 0.5) * 50; tags.push(`bright ${b > 0 ? '+' : ''}${Math.round(b)}`); }
+      const cosA = Math.cos(hue * Math.PI / 180), sinA = Math.sin(hue * Math.PI / 180);
+      const m = [
+        .213 + cosA * .787 - sinA * .213, .715 - cosA * .715 - sinA * .715, .072 - cosA * .072 + sinA * .928,
+        .213 - cosA * .213 + sinA * .143, .715 + cosA * .285 + sinA * .140, .072 - cosA * .072 - sinA * .283,
+        .213 - cosA * .213 - sinA * .787, .715 - cosA * .715 + sinA * .715, .072 + cosA * .928 + sinA * .072
+      ];
+      const nAmp = ops.has('noise') ? 18 + r() * 30 : 0;
+      if (nAmp) tags.push('noise σ' + Math.round(nAmp / 2));
+      for (let i = 0; i < d.length; i += 4) {
+        const R = d[i], G = d[i + 1], B = d[i + 2];
+        let nr = R * m[0] + G * m[1] + B * m[2], ng = R * m[3] + G * m[4] + B * m[5], nb = R * m[6] + G * m[7] + B * m[8];
+        const n = nAmp ? (r() + r() + r() - 1.5) * nAmp : 0;
+        d[i] = (nr - 128) * ct + 128 + b + n; d[i + 1] = (ng - 128) * ct + 128 + b + n; d[i + 2] = (nb - 128) * ct + 128 + b + n;
+      }
+      ctx.putImageData(id, 0, 0);
+    }
+    if (ops.has('cutout')) {
+      const w = 30 + r() * 30, x = r() * (S - w), y = r() * (S - w);
+      ctx.fillStyle = '#000'; ctx.fillRect(x, y, w, w); tags.push('cutout');
+    }
+    $('span', tile).textContent = tags.join(' · ') || 'identity';
+  });
+}
+function renderBalance() {
+  const target = 2500, max = Math.max(...BAL.map(c => c.n));
+  const scale = aug.balanced ? target * 1.15 : max;
+  $$('#balance-rows .brow').forEach((row, i) => {
+    const c = BAL[i];
+    const orig = aug.balanced ? Math.min(c.n, target) : c.n;
+    const added = aug.balanced ? Math.max(0, target - c.n) : 0;
+    const track = $('.track', row);
+    $('.o', track).style.width = `${orig / scale * 100}%`;
+    $('.a', track).style.width = `${added / scale * 100}%`;
+    $('.a', track).style.display = added ? '' : 'none';
+    track.classList.toggle('has-aug', added > 0);
+    $('.val', row).textContent = (orig + added).toLocaleString();
+    row.dataset.tip = `<b>${c.name}</b><br>${orig.toLocaleString()} original` + (added ? `<br>+${added.toLocaleString()} augmented` : '') + (aug.balanced && c.n > target ? `<br>(undersampled from ${c.n.toLocaleString()})` : '');
+    row.setAttribute('aria-label', row.dataset.tip.replace(/<[^>]+>/g, ' '));
+  });
+}
+
+/* ---------- DEMO 4: NEURAL NET ---------- */
+const nn = { W: 640, H: 400, running: false, epoch: 0, pts: [], ds: 'spiral', cls: 0 };
+function nnPause() { nn.running = false; const b = $('#nn-play'); if (b) b.textContent = 'Train'; }
+demoInit.nn = function () {
+  const cv = $('#nn-canvas'); nn.ctx = cv.getContext('2d');
+  nn.grid = document.createElement('canvas'); nn.gw = 96; nn.gh = 60; nn.grid.width = nn.gw; nn.grid.height = nn.gh;
+  nn.gctx = nn.grid.getContext('2d');
+  makeData(); initNet(); nnDraw();
+  $('#nn-data').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setPressed($('#nn-data'), b); nn.ds = b.dataset.ds; makeData(); initNet(); nnDraw(); });
+  $('#nn-cls').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; setPressed($('#nn-cls'), b); nn.cls = +b.dataset.c; });
+  $('#nn-hidden').addEventListener('input', e => { $('#nn-hidden-v').textContent = e.target.value; initNet(); nnDraw(); });
+  $('#nn-lr').addEventListener('input', e => { $('#nn-lr-v').textContent = (e.target.value / 1000).toFixed(3); });
+  $('#nn-reset').addEventListener('click', () => { initNet(); nnDraw(); });
+  $('#nn-play').addEventListener('click', () => {
+    nn.running = !nn.running; $('#nn-play').textContent = nn.running ? 'Pause' : 'Train';
+    if (nn.running) requestAnimationFrame(nnLoop);
+  });
+  cv.addEventListener('click', e => {
+    const r = cv.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+    nn.pts.push({ x: (px * 2 - 1) * 1.6, y: (1 - py * 2), c: nn.cls });
+    nnDraw();
+  });
+  // pause when out of view
+  new IntersectionObserver(([e]) => { if (!e.isIntersecting) nnPause(); }).observe(cv);
+};
+function makeData() {
+  const r = mulberry32(42), pts = [], n = 110;
+  const gauss = () => (r() + r() + r() - 1.5) * 0.6;
+  if (nn.ds === 'spiral') {
+    for (let c = 0; c < 2; c++) for (let i = 0; i < n; i++) {
+      const t = i / n, a = t * 3.6 * Math.PI + c * Math.PI, rad = 0.08 + t * 0.85;
+      pts.push({ x: rad * Math.sin(a) * 1.4 + gauss() * 0.05, y: rad * Math.cos(a) + gauss() * 0.05, c });
+    }
+  } else if (nn.ds === 'circles') {
+    for (let i = 0; i < n * 2; i++) {
+      const c = i % 2, a = r() * Math.PI * 2, rad = c ? 0.65 + r() * 0.25 : r() * 0.35;
+      pts.push({ x: Math.cos(a) * rad * 1.4, y: Math.sin(a) * rad, c });
+    }
+  } else if (nn.ds === 'moons') {
+    for (let i = 0; i < n * 2; i++) {
+      const c = i % 2, a = r() * Math.PI;
+      const x = c ? 1 - Math.cos(a) : Math.cos(a), y = c ? 0.45 - Math.sin(a) : Math.sin(a) - 0.1;
+      pts.push({ x: (x - 0.5) * 0.85 + gauss() * 0.08, y: y * 0.75 + gauss() * 0.08, c });
+    }
+  } else {
+    for (let i = 0; i < n * 2; i++) {
+      let x = (r() * 2 - 1) * 1.4, y = r() * 2 - 1;
+      x += x > 0 ? 0.08 : -0.08; y += y > 0 ? 0.06 : -0.06;
+      pts.push({ x, y, c: x * y > 0 ? 0 : 1 });
+    }
+  }
+  nn.pts = pts;
+}
+function initNet() {
+  const H = +$('#nn-hidden').value, r = mulberry32(Date.now() & 0xffff);
+  const rn = (fanIn) => (r() * 2 - 1) * Math.sqrt(6 / (fanIn + H));
+  const mk = (n, fan) => { const a = new Float64Array(n); if (fan) for (let i = 0; i < n; i++) a[i] = rn(fan); return a; };
+  nn.hid = H;
+  nn.params = [mk(H * 2, 2), mk(H), mk(H * H, H), mk(H), mk(2 * H, H), mk(2)];
+  nn.m = nn.params.map(p => new Float64Array(p.length));
+  nn.v = nn.params.map(p => new Float64Array(p.length));
+  nn.t = 0; nn.epoch = 0;
+  $('#nn-arch').textContent = `2 → ${H} → ${H} → 2 · tanh · Adam`;
+  $('#nn-epoch').textContent = 0; $('#nn-loss').textContent = '–'; $('#nn-acc').textContent = '–';
+}
+function forward(x, y, keep) {
+  const H = nn.hid, [W1, b1, W2, b2, W3, b3] = nn.params;
+  const a1 = new Float64Array(H), a2 = new Float64Array(H);
+  for (let h = 0; h < H; h++) a1[h] = Math.tanh(W1[h * 2] * x + W1[h * 2 + 1] * y + b1[h]);
+  for (let h = 0; h < H; h++) { let s = b2[h]; for (let j = 0; j < H; j++) s += W2[h * H + j] * a1[j]; a2[h] = Math.tanh(s); }
+  const z = [b3[0], b3[1]];
+  for (let k = 0; k < 2; k++) for (let j = 0; j < H; j++) z[k] += W3[k * H + j] * a2[j];
+  const mx = Math.max(z[0], z[1]), e0 = Math.exp(z[0] - mx), e1 = Math.exp(z[1] - mx), p1 = e1 / (e0 + e1);
+  return keep ? { a1, a2, p: [1 - p1, p1] } : p1;
+}
+function trainStep() {
+  const H = nn.hid, [W1, , W2, , W3] = nn.params;
+  const g = nn.params.map(p => new Float64Array(p.length));
+  let loss = 0, correct = 0;
+  const N = nn.pts.length; if (!N) return;
+  for (const pt of nn.pts) {
+    const { a1, a2, p } = forward(pt.x, pt.y, true);
+    loss -= Math.log(Math.max(1e-9, p[pt.c]));
+    if ((p[1] > 0.5 ? 1 : 0) === pt.c) correct++;
+    const dz = [p[0] - (pt.c === 0), p[1] - (pt.c === 1)];
+    const da2 = new Float64Array(H);
+    for (let k = 0; k < 2; k++) { g[5][k] += dz[k]; for (let j = 0; j < H; j++) { g[4][k * H + j] += dz[k] * a2[j]; da2[j] += W3[k * H + j] * dz[k]; } }
+    const dz2 = da2.map((v, j) => v * (1 - a2[j] * a2[j]));
+    const da1 = new Float64Array(H);
+    for (let h = 0; h < H; h++) { g[3][h] += dz2[h]; for (let j = 0; j < H; j++) { g[2][h * H + j] += dz2[h] * a1[j]; da1[j] += W2[h * H + j] * dz2[h]; } }
+    for (let h = 0; h < H; h++) { const d1 = da1[h] * (1 - a1[h] * a1[h]); g[1][h] += d1; g[0][h * 2] += d1 * pt.x; g[0][h * 2 + 1] += d1 * pt.y; }
+  }
+  const lr = +$('#nn-lr').value / 1000, b1 = 0.9, b2 = 0.999; nn.t++;
+  nn.params.forEach((P, pi) => {
+    const M = nn.m[pi], V = nn.v[pi], G = g[pi];
+    for (let i = 0; i < P.length; i++) {
+      const gi = G[i] / N;
+      M[i] = b1 * M[i] + (1 - b1) * gi; V[i] = b2 * V[i] + (1 - b2) * gi * gi;
+      P[i] -= lr * (M[i] / (1 - Math.pow(b1, nn.t))) / (Math.sqrt(V[i] / (1 - Math.pow(b2, nn.t))) + 1e-8);
+    }
+  });
+  nn.epoch++;
+  nn.lastLoss = loss / N; nn.lastAcc = correct / N;
+}
+function nnLoop() {
+  if (!nn.running) return;
+  for (let i = 0; i < 6; i++) trainStep();
+  nnDraw();
+  $('#nn-epoch').textContent = nn.epoch;
+  if (nn.lastLoss != null) { $('#nn-loss').textContent = nn.lastLoss.toFixed(3); $('#nn-acc').textContent = Math.round(nn.lastAcc * 100) + '%'; }
+  requestAnimationFrame(nnLoop);
+}
+function nnDraw() {
+  const { ctx, gctx, gw, gh, W, H } = nn;
+  const img = gctx.createImageData(gw, gh), d = img.data;
+  const A = [80, 227, 255], B = [168, 85, 247], BG = [8, 11, 20];
+  for (let j = 0; j < gh; j++) for (let i = 0; i < gw; i++) {
+    const x = ((i + 0.5) / gw * 2 - 1) * 1.6, y = 1 - (j + 0.5) / gh * 2;
+    const p = forward(x, y, false), conf = Math.abs(p - 0.5) * 2, col = p > 0.5 ? B : A, k = 0.12 + conf * 0.38;
+    const o = (j * gw + i) * 4;
+    d[o] = BG[0] + (col[0] - BG[0]) * k; d[o + 1] = BG[1] + (col[1] - BG[1]) * k; d[o + 2] = BG[2] + (col[2] - BG[2]) * k; d[o + 3] = 255;
+  }
+  gctx.putImageData(img, 0, 0);
+  ctx.imageSmoothingEnabled = true; ctx.drawImage(nn.grid, 0, 0, W, H);
+  ctx.strokeStyle = 'rgba(255,255,255,0.06)'; ctx.lineWidth = 1;
+  for (let x = 0; x <= W; x += 80) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+  for (let y = 0; y <= H; y += 80) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+  for (const pt of nn.pts) {
+    const px = (pt.x / 1.6 + 1) / 2 * W, py = (1 - pt.y) / 2 * H;
+    ctx.beginPath(); ctx.arc(px, py, 4.5, 0, Math.PI * 2);
+    ctx.fillStyle = pt.c ? '#a855f7' : '#50e3ff'; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = '#050810'; ctx.stroke();
+  }
+}
+
+/* Init the first demo when the lab scrolls into view */
+new IntersectionObserver(([e], o) => {
+  if (e.isIntersecting) { const t = tabs.find(t => t.getAttribute('aria-selected') === 'true'); const k = t.id.slice(2); if (!demoInit[k].done) { demoInit[k].done = true; demoInit[k](); } o.disconnect(); }
+}, { rootMargin: '200px' }).observe($('#lab'));
+
+/* ---------- CASE STUDIES ---------- */
+const CASES = {
+  inkvision: {
+    title: 'InkVision OCR', meta: '2024 · Computer Vision · PyTorch',
+    problem: 'Off-the-shelf OCR handles Arabic poorly. The script is cursive and letters change shape depending on where they sit in a word, and real documents mix Arabic, Latin and digits on the same page. The mobile client also needed results in real time.',
+    pipeline: ['Image capture', 'OpenCV preprocessing', 'Text-line detection', 'CNN encoder', 'Attention decoder', 'REST API', 'Mobile app'],
+    approach: [
+      'Preprocessing with OpenCV (deskew, denoise, binarization) to cope with phone-camera photos.',
+      'A PyTorch recognition model with custom attention layers, so the decoder focuses on the right part of each line in both reading directions.',
+      'Training on a mix of Arabic and Latin text, with augmentation for blur, perspective and lighting.',
+      'Served through a REST API that real-time mobile clients call.'
+    ],
+    results: [['95%', 'recognition accuracy'], ['2 scripts', 'Arabic + Latin'], ['Real-time', 'mobile clients']],
+    stack: ['PyTorch', 'OpenCV', 'Attention', 'Python', 'REST API'], demo: 'ocr'
+  },
+  tomato: {
+    title: 'Tomato Disease Pipeline', meta: '2024 · End-to-end ML · PyTorch / TensorFlow',
+    problem: 'Farmers need to identify diseases in the field, on cheap hardware and without a reliable connection. The available data was limited and badly imbalanced: some diseases had thousands of examples, others only a few hundred.',
+    pipeline: ['Data ingestion', 'Cleaning', 'Augmentation', 'Class balancing', 'Training', 'Evaluation', 'Edge export'],
+    approach: [
+      'An ingestion and cleaning stage that produces a reproducible dataset.',
+      'Heavy augmentation (geometric changes, color jitter, noise) so the model holds up under field lighting.',
+      'Imbalance handled through resampling and a weighted loss, so rare diseases are not ignored.',
+      'Model trained and evaluated, then optimized to run on edge devices in the field.'
+    ],
+    results: [['End-to-end', 'from data to device'], ['Edge-ready', 'optimized for field hardware'], ['Balanced', 'reliable on rare classes']],
+    stack: ['PyTorch', 'TensorFlow', 'Edge ML', 'Data Engineering'], demo: 'aug'
+  },
+  illumiscan: {
+    title: 'IllumiScan Defect Detection', meta: '2023 · Industrial QA · OpenCV',
+    problem: 'Manual visual inspection is slow and inconsistent between inspectors. The line needed an automated check that is fast, explainable and works without a large labelled defect dataset.',
+    pipeline: ['Camera frame', 'Grayscale', 'Denoise', 'Adaptive threshold', 'Morphology', 'Contours', 'Pass / Reject'],
+    approach: [
+      'Custom OpenCV preprocessing, tuned so uneven lighting is not mistaken for a defect.',
+      'Adaptive thresholding and morphological open/close to separate real defects from surface texture.',
+      'Contour detection with filters on area and shape, so each flagged region comes with a clear reason.',
+      'Validated against labelled samples before going on the line.'
+    ],
+    results: [['92%', 'validated detection accuracy'], ['ms', 'per-frame latency'], ['0', 'training images required']],
+    stack: ['OpenCV', 'Python', 'Image Processing'], demo: 'defect'
+  },
+  moneyflow: {
+    title: 'MoneyFlow Finance App', meta: '2024 · Full-stack · Flutter + Node.js',
+    problem: 'Users wanted one place to log expenses and see where their money goes, on mobile, with secure accounts and up-to-date analytics.',
+    pipeline: ['Flutter client', 'JWT auth', 'Node.js / TypeScript API', 'MongoDB', 'Analytics dashboards'],
+    approach: [
+      'A cross-platform Flutter app with a clean, fast flow for logging expenses.',
+      'A typed Node.js + TypeScript REST API with JWT authentication.',
+      'A MongoDB data model built for per-user aggregation queries.',
+      'Real-time analytics dashboards showing spending by category and over time.'
+    ],
+    results: [['iOS + Android', 'one codebase'], ['JWT', 'secure accounts'], ['Real-time', 'analytics']],
+    stack: ['Flutter', 'Dart', 'Node.js', 'TypeScript', 'MongoDB']
+  }
+};
+const dlg = $('#case');
+function openCase(key) {
+  const c = CASES[key]; if (!c) return;
+  $('#case-body').innerHTML = `
+    <div><p class="mono" style="color:var(--primary);margin-bottom:.5rem">${c.meta}</p><h2 id="case-title">${c.title}</h2></div>
+    <div><h4>The problem</h4><p>${c.problem}</p></div>
+    <div><h4>Pipeline</h4><div class="pipeline">${c.pipeline.map(s => `<span>${s}</span>`).join('<em>→</em>')}</div></div>
+    <div><h4>Approach</h4><ol>${c.approach.map(a => `<li>${a}</li>`).join('')}</ol></div>
+    <div><h4>Results</h4><div class="case-results">${c.results.map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join('')}</div></div>
+    <div><h4>Stack</h4><div class="chips">${c.stack.map(s => `<span class="chip">${s}</span>`).join('')}</div></div>
+    <div class="row">
+      ${c.demo ? `<button class="btn btn-primary" data-close-demo="${c.demo}">Try the live demo</button>` : ''}
+      <a class="btn" href="https://github.com/Ziad-irl" target="_blank" rel="noopener">View code ↗</a>
+      <a class="btn" href="#contact" data-close>Build something similar →</a>
+    </div>`;
+  if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-case]');
+  if (t) { e.preventDefault(); openCase(t.dataset.case); }
+});
+$('#case-close').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => {
+  if (e.target === dlg) dlg.close();
+  const d = e.target.closest('[data-close-demo]');
+  if (d) { dlg.close(); selectTab(document.getElementById('t-' + d.dataset.closeDemo)); $('#lab').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); }
+  if (e.target.closest('[data-close]')) dlg.close();
+});
+
+/* ---------- SKILLS ---------- */
+// level: 3 = core (use daily), 2 = proficient (shipped with it), 1 = working knowledge
+const P = { ink: ['InkVision OCR', 'Project'], tom: ['Tomato Disease Pipeline', 'Project'], ill: ['IllumiScan', 'Project'], mon: ['MoneyFlow', 'Project'],
+  depi: ['DEPI · AWS ML Track', 'Training'], ali: ['Alignerr (Labelbox)', 'Role'], mcit: ['Ministry of Comm. & IT', 'Internship'], emp: ['Empire Robotics Hub', 'Co-founder'], lab: ['Live Lab on this site', 'Demo'] };
+const SKILLS = [
+  { group: 'Machine Learning', c: '#50e3ff', items: [
+    ['PyTorch', 3, ['ink', 'tom']], ['TensorFlow', 2, ['tom']], ['Scikit-learn', 2, ['depi']], ['Deep Learning', 3, ['ink', 'tom', 'lab']],
+    ['Attention / Transformers', 2, ['ink']], ['NLP', 1, ['ali']], ['RLHF & LLM Evaluation', 2, ['ali']] ] },
+  { group: 'Computer Vision', c: '#6366f1', items: [
+    ['OpenCV', 3, ['ink', 'ill', 'lab']], ['OCR', 3, ['ink', 'lab']], ['Defect Detection', 2, ['ill', 'lab']], ['Image Classification', 3, ['tom']],
+    ['Data Augmentation', 3, ['tom', 'ink', 'lab']], ['Edge Deployment', 2, ['tom']] ] },
+  { group: 'MLOps & Cloud', c: '#a855f7', items: [
+    ['AWS', 2, ['depi']], ['SageMaker', 2, ['depi']], ['MLOps', 2, ['depi', 'tom']], ['Docker', 2, ['depi']], ['REST APIs', 3, ['ink', 'mon']], ['Git', 3, ['ink', 'tom', 'ill', 'mon']] ] },
+  { group: 'Data', c: '#a6f65d', items: [
+    ['Pandas / NumPy', 3, ['tom', 'mcit', 'depi']], ['Power BI', 2, ['mcit']], ['Data Pipelines', 2, ['mcit', 'tom', 'depi']], ['PostgreSQL', 1, ['mcit']], ['MongoDB', 2, ['mon']] ] },
+  { group: 'Apps & Backend', c: '#ff8c42', items: [
+    ['Flutter', 2, ['mon']], ['Node.js', 2, ['mon']], ['.NET', 2, ['mcit']], ['JWT Auth', 2, ['mon']], ['Robotics', 2, ['emp']] ] }
+];
+const TIERS = { 3: 'Core: I use it every day', 2: 'Proficient: shipped real work with it', 1: 'Working knowledge' };
+const lvlHTML = n => `<span class="lvl" aria-hidden="true">${[1, 2, 3].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')}</span>`;
+(function renderSkills() {
+  const wrap = $('#skill-groups');
+  SKILLS.forEach(g => {
+    const card = document.createElement('div'); card.className = 'card skill-group reveal'; card.style.setProperty('--c', g.c);
+    card.innerHTML = `<h3><i></i>${g.group}</h3><div class="chips">${g.items.map(([n, l]) => `<button class="skill-btn" aria-pressed="false" data-skill="${n}">${n}${lvlHTML(l)}</button>`).join('')}</div>`;
+    wrap.appendChild(card); revObs.observe(card);
+  });
+  const panel = $('#skill-panel');
+  function show(name) {
+    let item, group;
+    SKILLS.forEach(g => g.items.forEach(it => { if (it[0] === name) { item = it; group = g; } }));
+    if (!item) return;
+    $$('.skill-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.skill === name)));
+    panel.innerHTML = `
+      <span class="mono" style="color:${group.c}">${group.group}</span>
+      <h3>${item[0]}</h3>
+      <div class="tier">${lvlHTML(item[1])} &nbsp;${TIERS[item[1]]}</div>
+      <div><p class="mono" style="margin-bottom:.6rem">WHERE I'VE USED IT</p>
+      <ul class="used-list">${item[2].map(k => `<li>${P[k][0]}<small>${P[k][1]}</small></li>`).join('')}</ul></div>
+      <div class="tier-key"><span>${lvlHTML(3)} core</span><span>${lvlHTML(2)} proficient</span><span>${lvlHTML(1)} working</span></div>`;
+  }
+  wrap.addEventListener('click', e => { const b = e.target.closest('.skill-btn'); if (b) show(b.dataset.skill); });
+  show('PyTorch');
+})();
+
+// Programming languages: level out of 5
+const CODE_LANGS = [
+  ['Python', 'PY', '#50e3ff', 5, 'ML, CV, data, APIs'],
+  ['TypeScript', 'TS', '#6366f1', 4, 'Node.js backends'],
+  ['JavaScript', 'JS', '#facc15', 4, 'Web, this site\'s demos'],
+  ['C++', 'C++', '#a855f7', 3, 'Robotics, performance code'],
+  ['C#', 'C#', '#a6f65d', 3, '.NET backend modules'],
+  ['Dart', 'DT', '#38bdf8', 3, 'Flutter mobile apps'],
+  ['SQL', 'SQL', '#ff8c42', 3, 'PostgreSQL, analytics'],
+  ['HTML / CSS', '</>', '#f472b6', 4, 'Front-end, dashboards']
+];
+$('#code-langs').innerHTML = CODE_LANGS.map(([n, ab, c, l, use]) => `
+  <div class="code-lang">
+    <span class="badge" style="background:${c}">${ab}</span>
+    <span class="info"><b>${n}</b><small>${use}</small></span>
+    <span class="pips" role="img" aria-label="${l} out of 5">${[1, 2, 3, 4, 5].map(i => `<i class="${i <= l ? 'on' : ''}"></i>`).join('')}</span>
+  </div>`).join('');
+
+const SPOKEN = [['Arabic', 'العربية', 'Native', 6], ['English', '', 'Fluent · C1', 5], ['Japanese', '日本語', 'Elementary · A2', 2]];
+const CEFR = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+$('#spoken').innerHTML = SPOKEN.map(([n, native, lvl, k]) => `
+  <div class="spoken-row">
+    <div class="top"><b>${n}${native ? `<span lang="${n === 'Arabic' ? 'ar' : 'ja'}">${native}</span>` : ''}</b><small>${lvl}</small></div>
+    <div class="cefr" role="img" aria-label="${n}: ${lvl}">${CEFR.map((c, i) => `<i class="${i < k ? 'on' : ''}">${c}</i>`).join('')}</div>
+  </div>`).join('');
+
+/* ---------- CONTACT ---------- */
+function singlePick(group) {
+  group.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const on = b.getAttribute('aria-pressed') === 'true';
+    $$('button', group).forEach(x => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', String(!on));
+  });
+}
+singlePick($('#pick-service')); singlePick($('#pick-time'));
+$$('[data-service]').forEach(b => b.addEventListener('click', () => {
+  const target = $$('#pick-service button').find(x => x.textContent === b.dataset.service);
+  $$('#pick-service button').forEach(x => x.setAttribute('aria-pressed', String(x === target)));
+  $('#contact').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+  setTimeout(() => $('#b-msg').focus({ preventScroll: true }), 700);
+}));
+$('#brief').addEventListener('submit', e => {
+  e.preventDefault();
+  const svc = ($('#pick-service [aria-pressed="true"]') || {}).textContent || 'General enquiry';
+  const time = ($('#pick-time [aria-pressed="true"]') || {}).textContent || 'Not specified';
+  const name = $('#b-name').value.trim(), msg = $('#b-msg').value.trim();
+  const subject = `Project enquiry: ${svc}${name ? ' (' + name + ')' : ''}`;
+  const body = `Hi Ziad,\n\nService: ${svc}\nTimeline: ${time}\n\n${msg || '[Tell me about your project]'}\n\n${name || ''}`;
+  location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  toast('Opening your email app…');
+});
+$('#copy-email').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(EMAIL); toast('Email copied to clipboard'); }
+  catch { location.href = `mailto:${EMAIL}`; }
+});
+addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); } });
+})();
+</script>
+</body>
+</html>
